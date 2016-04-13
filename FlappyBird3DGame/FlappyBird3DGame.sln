@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{09245D22-AF8D-10AD-8BA4-9F011E50DE8E}") = "FlappyBird3DGame", "Assembly-CSharp.csproj", "{4070655A-AA01-597A-D51E-E508CDE3B32E}"
 EndProject
+Project("{09245D22-AF8D-10AD-8BA4-9F011E50DE8E}") = "FlappyBird3DGame", "Assembly-CSharp-Editor.csproj", "{7AFD36D6-1D64-38D4-B702-CDDE5A2E40FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{4070655A-AA01-597A-D51E-E508CDE3B32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4070655A-AA01-597A-D51E-E508CDE3B32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4070655A-AA01-597A-D51E-E508CDE3B32E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AFD36D6-1D64-38D4-B702-CDDE5A2E40FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AFD36D6-1D64-38D4-B702-CDDE5A2E40FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AFD36D6-1D64-38D4-B702-CDDE5A2E40FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AFD36D6-1D64-38D4-B702-CDDE5A2E40FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
