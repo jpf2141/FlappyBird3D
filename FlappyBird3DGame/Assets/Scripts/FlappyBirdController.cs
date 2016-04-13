@@ -3,6 +3,7 @@ using System.Collections;
 
 public class FlappyBirdController : MonoBehaviour {
 	public float up_force;
+	public float down_force;
 	public GameObject flappybird;
 
 	// Use this for initialization
@@ -18,6 +19,8 @@ public class FlappyBirdController : MonoBehaviour {
 	private void fly() { 
 		if (Input.GetMouseButtonDown (0)) {
 			flyup ();
+		} else { 
+			falldown ();
 		}
 	}
 
@@ -25,6 +28,11 @@ public class FlappyBirdController : MonoBehaviour {
 		Rigidbody rigidbody = getRigidbody ();
 		rigidbody.velocity = Vector3.zero;  // Prevent flappy bird from zooming upwards
 		rigidbody.AddForce (new Vector3(0.0F, up_force, 0.0F));
+	}
+
+	private void falldown() { 
+		Rigidbody rigidbody = getRigidbody ();
+		rigidbody.AddForce (new Vector3 (0.0F, -down_force, 0.0F));
 	}
 
 	private Rigidbody getRigidbody() { 
