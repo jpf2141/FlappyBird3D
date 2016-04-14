@@ -64,14 +64,7 @@
      <None Include="Assets\license_3rdpartynotice.txt" />
      <None Include="Assets\Vuforia\Shaders\Text3D.shader" />
  <Reference Include="Assembly-UnityScript-Editor-firstpass">
-<<<<<<< Updated upstream
  <HintPath>/Users/joshfram/Documents/Columbia/Senior/3DUI/FlappyBird3D/FlappyBird3DGame/Library/ScriptAssemblies/Assembly-UnityScript-Editor-firstpass.dll</HintPath>
-=======
- <HintPath>/Users/cassiewes1/Desktop/FlappyBird3D/FlappyBird3DGame/Library/ScriptAssemblies/Assembly-UnityScript-Editor-firstpass.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Advertisements">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
->>>>>>> Stashed changes
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
