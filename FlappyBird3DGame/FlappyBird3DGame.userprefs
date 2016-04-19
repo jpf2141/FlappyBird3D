@@ -1,14 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-<<<<<<< Updated upstream
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FlappyBirdController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/VirtualButton.cs">
     <Files>
-      <File FileName="Assets/Scripts/FlappyBirdController.cs" Line="33" Column="19" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Vuforia/Scripts/DefaultInitializationErrorHandler.cs">
-    <Files>
-      <File FileName="Assets/Vuforia/Scripts/DefaultInitializationErrorHandler.cs" Line="82" Column="1" />
->>>>>>> Stashed changes
+      <File FileName="Assets/VirtualButton.cs" Line="9" Column="4" />
+      <File FileName="Assets/Scripts/FlappyBirdController.cs" Line="7" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

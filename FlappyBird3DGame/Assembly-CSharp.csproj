@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\FlappyBirdController.cs" />
      <Compile Include="Assets\Scripts\rotate.cs" />
+     <Compile Include="Assets\VirtualButton.cs" />
      <Compile Include="Assets\Vuforia\Scripts\BackgroundPlaneBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CloudRecoBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CylinderTargetBehaviour.cs" />
