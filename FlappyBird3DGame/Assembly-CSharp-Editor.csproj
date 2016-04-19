@@ -53,6 +53,7 @@
      <None Include="Assets\link.xml" />
      <None Include="Assets\Vuforia\Shaders\VertexLitWithZ.shader" />
      <None Include="Assets\Vuforia\Shaders\RenderVideoBackground.shader" />
+     <None Include="Assets\Explosions\3D Cartoon_Explosions_Pack_Vol_3\Help Readme SOS.txt" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Vuforia\Shaders\VideoBackground.shader" />
      <None Include="Assets\StreamingAssets\QCAR\Assignment3.xml" />
@@ -63,6 +64,9 @@
      <None Include="Assets\Vuforia\Shaders\BrightTexture.shader" />
      <None Include="Assets\license_3rdpartynotice.txt" />
      <None Include="Assets\Vuforia\Shaders\Text3D.shader" />
+ <Reference Include="Assembly-UnityScript">
+ <HintPath>/Users/cassiewes1/Desktop/FlappyBird3D/FlappyBird3DGame/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ </Reference>
  <Reference Include="Assembly-UnityScript-Editor-firstpass">
  <HintPath>/Users/cassiewes1/Desktop/FlappyBird3D/FlappyBird3DGame/Library/ScriptAssemblies/Assembly-UnityScript-Editor-firstpass.dll</HintPath>
  </Reference>

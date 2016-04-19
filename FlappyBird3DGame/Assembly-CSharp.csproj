@@ -46,8 +46,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\FlappyBirdController.cs" />
+     <Compile Include="Assets\Scripts\VirtualButton.cs" />
      <Compile Include="Assets\Scripts\rotate.cs" />
-     <Compile Include="Assets\VirtualButton.cs" />
      <Compile Include="Assets\Vuforia\Scripts\BackgroundPlaneBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CloudRecoBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CylinderTargetBehaviour.cs" />
@@ -87,10 +87,12 @@
      <Compile Include="Assets\Vuforia\Scripts\WireframeBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\WireframeTrackableEventHandler.cs" />
      <Compile Include="Assets\Vuforia\Scripts\WordBehaviour.cs" />
+     <Compile Include="Assets\destroyCloud.cs" />
      <None Include="Assets\Vuforia\Shaders\ColoredLines.shader" />
      <None Include="Assets\link.xml" />
      <None Include="Assets\Vuforia\Shaders\VertexLitWithZ.shader" />
      <None Include="Assets\Vuforia\Shaders\RenderVideoBackground.shader" />
+     <None Include="Assets\Explosions\3D Cartoon_Explosions_Pack_Vol_3\Help Readme SOS.txt" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Vuforia\Shaders\VideoBackground.shader" />
      <None Include="Assets\StreamingAssets\QCAR\Assignment3.xml" />
