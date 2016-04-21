@@ -6,6 +6,9 @@ public class FlappyBirdController : MonoBehaviour {
 	public float down_force;
 	public GameObject flappybird;
 
+	public int score = 0;
+	public string user;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -38,4 +41,31 @@ public class FlappyBirdController : MonoBehaviour {
 	private Rigidbody getRigidbody() { 
 		return flappybird.GetComponent<Rigidbody> ();
 	}
+
+
+	//call this when the player loses (i.e. collides w/ something, crashes, etc)
+	void scoreManager() {
+		int highScore = getHighScore (GameControl.control.name);
+		if (this.score >= highScore) {
+			GameControl.control.scores [GameControl.control.name] = this.score;
+			GameControl.control.Save ();
+		}	//else do nothing, no high score set
+		GameControl.control.LoadLevel ("MainMenu");	//return to menu screen
+	}
+
+	int getHighScore(string userName) {
+		if(userName.Equals("")) {
+			userName = "Default Player";
+			Debug.Log("No User Name Entered");
+		}
+
+		if (!GameControl.control.scores.ContainsKey(userName)) {	//no user of that name in the dictionary,
+			GameControl.control.scores.Add(userName, 0); 			//create new entry in the dictionary
+			return GameControl.control.scores[userName];			//will return 0
+		} else {
+			return  GameControl.control.scores [userName];			//will return user's high score
+		}
+	}
+
+
 }
