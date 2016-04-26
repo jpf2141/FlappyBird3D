@@ -1,24 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-<<<<<<< Updated upstream
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/destroyCloud.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CustomEventHandler.cs">
     <Files>
-      <File FileName="Assets/destroyCloud.cs" Line="20" Column="5" />
-      <File FileName="Assets/Vuforia/Scripts/TurnOffBehaviour.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/FlappyBirdController.cs" Line="1" Column="1" />
-=======
-<<<<<<< Updated upstream
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/VirtualButton.cs">
-    <Files>
-      <File FileName="Assets/VirtualButton.cs" Line="9" Column="4" />
-      <File FileName="Assets/Scripts/FlappyBirdController.cs" Line="7" Column="1" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FlappyBirdController.cs">
-    <Files>
-      <File FileName="Assets/Scripts/FlappyBirdController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Vuforia/Scripts/VirtualButtonBehaviour.cs" Line="1" Column="1" />
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+      <File FileName="Assets/Scripts/CustomEventHandler.cs" Line="12" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

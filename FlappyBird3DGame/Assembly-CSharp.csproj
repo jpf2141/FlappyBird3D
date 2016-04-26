@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CustomEventHandler.cs" />
      <Compile Include="Assets\Scripts\FlappyBirdController.cs" />
      <Compile Include="Assets\Scripts\GameControl.cs" />
      <Compile Include="Assets\Scripts\VirtualButton.cs" />
@@ -111,13 +112,13 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="esLibrary">
- <HintPath>/Users/cassiewes1/Desktop/FlappyBird3D/FlappyBird3DGame/Assets/Plugins/RankPin/esLibrary.dll</HintPath>
+ <HintPath>/Users/KD/Desktop/FlappyBird3D/FlappyBird3DGame/Assets/Plugins/RankPin/esLibrary.dll</HintPath>
  </Reference>
  <Reference Include="RankPin">
- <HintPath>/Users/cassiewes1/Desktop/FlappyBird3D/FlappyBird3DGame/Assets/Plugins/RankPin/RankPin.dll</HintPath>
+ <HintPath>/Users/KD/Desktop/FlappyBird3D/FlappyBird3DGame/Assets/Plugins/RankPin/RankPin.dll</HintPath>
  </Reference>
  <Reference Include="Vuforia.UnityExtensions">
- <HintPath>/Users/cassiewes1/Desktop/FlappyBird3D/FlappyBird3DGame/Assets/Vuforia/Scripts/Internal/Vuforia.UnityExtensions.dll</HintPath>
+ <HintPath>/Users/KD/Desktop/FlappyBird3D/FlappyBird3DGame/Assets/Vuforia/Scripts/Internal/Vuforia.UnityExtensions.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
