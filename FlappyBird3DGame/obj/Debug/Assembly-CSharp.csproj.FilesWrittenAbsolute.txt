@@ -50,6 +50,11 @@
 /Users/cassiewes1/Desktop/FlappyBird3D/FlappyBird3DGame/Temp/bin/Debug/Mono.Cecil.Mdb.dll
 /Users/cassiewes1/Desktop/FlappyBird3D/FlappyBird3DGame/Temp/bin/Debug/Assembly-CSharp.dll.mdb
 /Users/cassiewes1/Desktop/FlappyBird3D/FlappyBird3DGame/Temp/bin/Debug/Assembly-CSharp.dll
+<<<<<<< Updated upstream
 /Users/KD/Desktop/FlappyBird3D/FlappyBird3DGame/Temp/bin/Debug/esLibrary.dll
 /Users/KD/Desktop/FlappyBird3D/FlappyBird3DGame/Temp/bin/Debug/RankPin.dll
 /Users/KD/Desktop/FlappyBird3D/FlappyBird3DGame/Temp/bin/Debug/Vuforia.UnityExtensions.dll
+=======
+/Users/cassiewes1/Desktop/FlappyBird3D/FlappyBird3DGame/Temp/bin/Debug/esLibrary.dll
+/Users/cassiewes1/Desktop/FlappyBird3D/FlappyBird3DGame/Temp/bin/Debug/RankPin.dll
+>>>>>>> Stashed changes
