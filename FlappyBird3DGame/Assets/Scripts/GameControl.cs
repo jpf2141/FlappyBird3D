@@ -28,8 +28,7 @@ public class GameControl : MonoBehaviour {
 		} else if (control != this) {
 			Destroy (gameObject);
 		}
-
-
+			
 		control.Load ();	//load our saved shit
 
 
@@ -42,6 +41,7 @@ public class GameControl : MonoBehaviour {
 		PlayerData data = new PlayerData ();
 		try
 		{
+			control.scores.Add("Josh", 0);
 			data.scores = control.scores;
 		}
 		catch (ArgumentException)
@@ -56,6 +56,7 @@ public class GameControl : MonoBehaviour {
 
 	public void Load() {
 		if (File.Exists (Application.persistentDataPath + "/playerInfo.dat")) {
+			Debug.Log (Application.persistentDataPath);
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
 			PlayerData data = (PlayerData)bf.Deserialize(file); 
