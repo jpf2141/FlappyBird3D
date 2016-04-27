@@ -67,5 +67,15 @@ public class FlappyBirdController : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.CompareTag ("coin")) {
+			other.gameObject.SetActive (false);
+		}
+		if (other.gameObject.CompareTag ("treasure")) {
+			other.gameObject.SetActive (false);
+		}
+	}
+
 
 }
