@@ -11,6 +11,8 @@ public class CustomEventHandler : MonoBehaviour, ITrackableEventHandler {
 	void Start () {
 		pipe = GameObject.Find ("Bottom Pipe");
 
+		Debug.Log (pipe.ToString ());
+
 		trackableBehaviour = GetComponent<TrackableBehaviour> (); 
 
 		if (trackableBehaviour) { 

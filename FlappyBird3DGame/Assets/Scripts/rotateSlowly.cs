@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class rotate : MonoBehaviour {
+public class rotateSlowly : MonoBehaviour {
 
 	public Vector3 tempPosition;
 

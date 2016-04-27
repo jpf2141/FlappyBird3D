@@ -11,7 +11,6 @@ public class FlappyBirdController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -20,15 +19,18 @@ public class FlappyBirdController : MonoBehaviour {
 	}
 
 	private void fly() { 
+		Rigidbody rigidbody = getRigidbody ();
+
 		if (Input.GetMouseButtonDown (0)) {
 			flyup ();
-		} else { 
+		} else if (rigidbody.useGravity == true) { 
 			falldown ();
 		}
 	}
 
 	private void flyup() { 
 		Rigidbody rigidbody = getRigidbody ();
+		rigidbody.useGravity = true; 
 		rigidbody.velocity = Vector3.zero;  // Prevent flappy bird from zooming upwards
 		rigidbody.AddForce (new Vector3(0.0F, up_force, 0.0F));
 	}

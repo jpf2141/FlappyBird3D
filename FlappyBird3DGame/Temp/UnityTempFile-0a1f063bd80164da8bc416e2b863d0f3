@@ -9,7 +9,10 @@
 -r:'Assets/Plugins/RankPin/RankPin.dll'
 -r:'Assets/Vuforia/Scripts/Internal/Vuforia.UnityExtensions.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll'
--define:UNITY_5_3_2
+-r:'/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll'
+-r:'/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll'
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_3_4
 -define:UNITY_5_3
 -define:UNITY_5
 -define:ENABLE_NEW_BUGREPORTER
@@ -78,6 +81,7 @@
 'Assets/Scripts/GameControl.cs'
 'Assets/Scripts/VirtualButton.cs'
 'Assets/Scripts/rotate.cs'
+'Assets/Scripts/rotateSlowly.cs'
 'Assets/Vuforia/Scripts/BackgroundPlaneBehaviour.cs'
 'Assets/Vuforia/Scripts/CloudRecoBehaviour.cs'
 'Assets/Vuforia/Scripts/CylinderTargetBehaviour.cs'
