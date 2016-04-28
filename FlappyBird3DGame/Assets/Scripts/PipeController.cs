@@ -32,7 +32,6 @@ public class PipeController : MonoBehaviour {
 				Random.Range(-2F, 1F) * (1.0F/ transform.localScale.y), 
 				gameObject.transform.position.z), 
 			transform.rotation);
-		Debug.Log (clone.transform.position);
 		clone.transform.parent = track.transform; 
 		clone.transform.localScale = gameObject.transform.localScale;
 	}

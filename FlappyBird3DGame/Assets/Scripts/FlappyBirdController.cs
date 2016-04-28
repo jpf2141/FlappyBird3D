@@ -20,6 +20,28 @@ public class FlappyBirdController : MonoBehaviour {
 		fly ();
 	}
 
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.CompareTag ("coin")) {
+			other.gameObject.SetActive (false);
+		} else if (other.gameObject.CompareTag ("treasure")) {
+			other.gameObject.SetActive (false);
+		} else { 
+			Destroy (flappybird);
+			scoreManager ();
+		}
+	}
+
+	void OnCollisionEnter(Collider other) { 
+		if (other.gameObject.CompareTag ("coin")) {
+			other.gameObject.SetActive (false);
+		} else if (other.gameObject.CompareTag ("treasure")) {
+			other.gameObject.SetActive (false);
+		} else { 
+			Destroy (flappybird);
+			scoreManager ();
+		}
+	}
+
 	private void fly() { 
 		if (Input.GetMouseButtonDown (0)) {
 			flyup ();
@@ -69,16 +91,4 @@ public class FlappyBirdController : MonoBehaviour {
 			return  GameControl.control.scores [userName];			//will return user's high score
 		}
 	}
-
-	void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.CompareTag ("coin")) {
-			other.gameObject.SetActive (false);
-		}
-		if (other.gameObject.CompareTag ("treasure")) {
-			other.gameObject.SetActive (false);
-		}
-	}
-
-
 }

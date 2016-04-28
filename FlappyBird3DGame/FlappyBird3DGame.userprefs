@@ -1,9 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PipeController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FlappyBirdController.cs">
     <Files>
-      <File FileName="Assets/Scripts/CustomEventHandler.cs" Line="28" Column="4" />
-      <File FileName="Assets/Scripts/PipeController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/FlappyBirdController.cs" Line="23" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
