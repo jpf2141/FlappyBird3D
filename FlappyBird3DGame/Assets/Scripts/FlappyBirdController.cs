@@ -9,6 +9,8 @@ public class FlappyBirdController : MonoBehaviour {
 	public int score = 0;
 	public string user;
 
+	private bool gameStarted = false; 
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -23,7 +25,8 @@ public class FlappyBirdController : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (0)) {
 			flyup ();
-		} else if (rigidbody.useGravity == true) { 
+			gameStarted = true;
+		} else if (gameStarted) { 
 			falldown ();
 		}
 	}
