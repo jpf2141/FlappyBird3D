@@ -28,7 +28,9 @@ public class PipeController : MonoBehaviour {
 
 	private void createNewPipes() { 
 		GameObject clone = (GameObject) Instantiate (gameObject, 
-			new Vector3(start * (1.0F / transform.localScale.x), gameObject.transform.position.y, gameObject.transform.position.z), 
+			new Vector3(start * (1.0F / transform.localScale.x), 
+				Random.Range(-2F, 1F) * (1.0F/ transform.localScale.y), 
+				gameObject.transform.position.z), 
 			transform.rotation);
 		Debug.Log (clone.transform.position);
 		clone.transform.parent = track.transform; 

@@ -21,8 +21,6 @@ public class FlappyBirdController : MonoBehaviour {
 	}
 
 	private void fly() { 
-		Rigidbody rigidbody = getRigidbody ();
-
 		if (Input.GetMouseButtonDown (0)) {
 			flyup ();
 			gameStarted = true;
