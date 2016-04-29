@@ -111,6 +111,8 @@
      <Compile Include="Assets\Vuforia\Scripts\WireframeBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\WireframeTrackableEventHandler.cs" />
      <Compile Include="Assets\Vuforia\Scripts\WordBehaviour.cs" />
+     <Compile Include="Assets\vbutton.cs" />
+     <Compile Include="Assets\virtualbutton.cs" />
      <None Include="Assets\Vuforia\Shaders\ColoredLines.shader" />
      <None Include="Assets\Cardboard\Distortion\CardboardDistortion.cginc" />
      <None Include="Assets\link.xml" />
@@ -136,7 +138,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Vuforia.UnityExtensions">
- <HintPath>/Users/KD/Desktop/FlappyBird3D/FlappyBirdGame3D2.0/Assets/Vuforia/Scripts/Internal/Vuforia.UnityExtensions.dll</HintPath>
+ <HintPath>/Users/cassiewes1/Desktop/3dui/FlappyBird3D/FlappyBirdGame3D2.0/Assets/Vuforia/Scripts/Internal/Vuforia.UnityExtensions.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
