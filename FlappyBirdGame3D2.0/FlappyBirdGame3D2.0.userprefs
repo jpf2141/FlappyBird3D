@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/virtualbutton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FirstPersonController.cs">
     <Files>
-      <File FileName="Assets/virtualbutton.cs" Line="30" Column="3" />
+      <File FileName="Assets/Scripts/FirstPersonController.cs" Line="14" Column="18" />
+      <File FileName="Assets/virtualbutton.cs" Line="30" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
