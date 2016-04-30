@@ -23,8 +23,7 @@ public class CloudFieldCreator : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (gameObject.transform.position.x < middle * (1.0F / transform.localScale.x) && !hasDuplicated) {
-			Debug.Log ("Created new cloud");
-			createNewPipes ();
+			createNewClouds ();
 			hasDuplicated = true;
 		} else if (gameObject.transform.position.x < end * (1.0F / transform.localScale.x)) { 
 			Destroy (gameObject);
@@ -33,7 +32,7 @@ public class CloudFieldCreator : MonoBehaviour {
 		gameObject.transform.position += gameObject.transform.right * -1.5f * Time.deltaTime;
 	}
 
-	private void createNewPipes() { 
+	private void createNewClouds() { 
 		GameObject clone = (GameObject) Instantiate (gameObject, 
 			new Vector3(start * (1.0F / transform.localScale.x), 
 				Random.Range(y_limit_low, y_limit_high) * (1.0F / transform.localScale.y), 

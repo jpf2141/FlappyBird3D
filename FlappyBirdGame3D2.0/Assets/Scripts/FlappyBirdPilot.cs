@@ -27,16 +27,17 @@ public class FlappyBirdPilot : MonoBehaviour {
 		fly (joystick.transform.root.eulerAngles);
 	}
 
+	void OnTriggerEnter(Collider other) { 
+		Debug.Log ("Bumped into another collider!!");
+	}
+
 	private void fly (Vector3 direction) { 
 		direction = new Vector3 (0, getDirection(direction.y), getDirection(direction.z));
 
 		gameObject.transform.position += direction * .01F;
-
-		Debug.Log (direction);
 	}
 
 	private float getDirection(float angle) {
-		Debug.Log (angle);
 		if (angle % 360 > 0) { 
 			return -1.0F;
 		} else if (angle % 360 == 0) { 
