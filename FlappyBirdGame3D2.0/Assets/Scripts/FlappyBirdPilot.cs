@@ -6,12 +6,23 @@ public class FlappyBirdPilot : MonoBehaviour {
 	public float y_force; 
 	public float z_force;
 
-	private float prev_height;
+
 	private float tilt;
 	private float scaleMultiplier;
 
 	public GameObject stadium;
 
+	private float initial_x;
+	private float initial_y; 
+	private float initial_z;
+
+	private bool initial_x_set = false; 
+	private bool initial_y_set = false;
+	private bool initial_z_set = false; 
+
+	public float y_steering_sensitivity;
+	public float z_steering_sensitivity;
+	public float x_steering_sensitivity;
 
 	// Use this for initialization
 	void Start () {
@@ -33,21 +44,17 @@ public class FlappyBirdPilot : MonoBehaviour {
 		gameObject.transform.rotation = gameObject.transform.rotation;
 		getRigidbody ().velocity = Vector3.zero;
 
-		fly (joystick.transform.root.eulerAngles);
-		Debug.Log (joystick.transform.position.y);
+		/*********** PILOT CONTROL WITH JOYSTICK ***************************/
+		fly_y_axis (joystick.transform.position.y);
+		fly_z_axis (joystick.transform.rotation.z);
+		fly_x_axis (joystick.transform.rotation.x);
+
 		scaleBird ();
 	}
 		
 	void OnTriggerEnter(Collider other) { 
 		Debug.Log ("Bumped into another collider:");
 		Debug.Log (other.gameObject.name);
-	}
-
-	private void fly (Vector3 direction) { 
-		Debug.Log (direction);
-		direction = new Vector3 (0, getDirection(direction.y), getDirection(direction.z));
-
-		gameObject.transform.position += direction * .01F;
 	}
 
 	private void scaleBird() { 
@@ -67,25 +74,50 @@ public class FlappyBirdPilot : MonoBehaviour {
 		}
 		scaleMultiplier = gameObject.transform.localScale.x * 10;
 	}
-
-	/*
-	private void flyup(float height) { 
-		if (prev_height == null) { 
-			prev_height = height; 
-		} else if (
-	} */
-
-	private float getDirection(float angle) {
-		if (angle % 360 > 0) { 
-			return -1.0F;
-		} else if (angle % 360 == 0) { 
-			return 0.0F; 
+		
+	private void fly_y_axis(float height) { 
+		if (!initial_y_set) { 
+			initial_y = height;
+			Debug.Log (height);
+			initial_y_set = true;
+		} else { 
+			if (height > initial_y + y_steering_sensitivity) { 
+				gameObject.transform.position += Vector3.up * .05F;
+			} else if (height < initial_y - y_steering_sensitivity) {
+				gameObject.transform.position += Vector3.down * .05F;
+			}
 		}
 
-		return 1.0F; 
 	}
 
+	private void fly_z_axis(float z) { 
+		if (!initial_z_set) { 
+			initial_z = z; 
+			Debug.Log (z);
+			initial_z_set = true;
+		} else { 
+			if (z > initial_z + z_steering_sensitivity) { 
+				gameObject.transform.position += Vector3.back * .05F;
+			} else if (z < initial_z - z_steering_sensitivity) { 
+				gameObject.transform.position += Vector3.forward * .05F;
+			}
+		}
+	}
 
+	private void fly_x_axis(float x) { 
+		if (!initial_x_set) { 
+			initial_x = x; 
+			Debug.Log (x);
+			initial_x_set = true; 
+		} else {
+			if (x > initial_x + x_steering_sensitivity) { 
+				gameObject.transform.position += Vector3.left * .05F;
+			} else if (x < initial_x - x_steering_sensitivity) { 
+				gameObject.transform.position += Vector3.right * .05F;
+			}
+		}
+	}
+		
 	private Rigidbody getRigidbody() { 
 		return gameObject.GetComponent<Rigidbody> ();
 	}
