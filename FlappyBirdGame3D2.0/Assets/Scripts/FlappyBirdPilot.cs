@@ -6,6 +6,8 @@ public class FlappyBirdPilot : MonoBehaviour {
 	public float y_force; 
 	public float z_force;
 
+	private float prev_height;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -23,8 +25,8 @@ public class FlappyBirdPilot : MonoBehaviour {
 			gameObject.transform.position += Vector3.forward * .1F;
 		}
 
-		gameObject.transform.rotation = joystick.transform.rotation;
 		fly (joystick.transform.root.eulerAngles);
+		Debug.Log (joystick.transform.position.y);
 	}
 
 	void OnTriggerEnter(Collider other) { 
@@ -32,10 +34,18 @@ public class FlappyBirdPilot : MonoBehaviour {
 	}
 
 	private void fly (Vector3 direction) { 
+		Debug.Log (direction);
 		direction = new Vector3 (0, getDirection(direction.y), getDirection(direction.z));
 
 		gameObject.transform.position += direction * .01F;
 	}
+
+	/*
+	private void flyup(float height) { 
+		if (prev_height == null) { 
+			prev_height = height; 
+		} else if (
+	} */
 
 	private float getDirection(float angle) {
 		if (angle % 360 > 0) { 
