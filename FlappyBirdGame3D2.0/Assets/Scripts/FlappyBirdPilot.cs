@@ -45,7 +45,6 @@ public class FlappyBirdPilot : MonoBehaviour {
 	}
 
 	private void scaleBird() { 
-		
 		if (gameObject.transform.localScale.x >= 0.01f && gameObject.transform.localScale.x <= 0.2f) { 
 			if (Input.GetKey (KeyCode.Q)) {
 				gameObject.transform.localScale += new Vector3 (0.01f, 0.01f, 0.01f);

@@ -10,6 +10,7 @@ public class Rotator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//lolwut 
 		transform.Rotate (0.0f, 125 * Time.deltaTime, 0.0f);
 	}
 }
