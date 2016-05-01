@@ -10,10 +10,11 @@ public class FlappyBirdPilot : MonoBehaviour {
 	private float tilt;
 	private float scaleMultiplier;
 
+	public GameObject stadium;
+
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -28,13 +29,18 @@ public class FlappyBirdPilot : MonoBehaviour {
 			gameObject.transform.position += Vector3.forward * .1F;
 		}
 
+		/*********** KEEP THE FLAPPY BIRD WITHIN THE STADIUM ****************/
+		gameObject.transform.rotation = gameObject.transform.rotation;
+		getRigidbody ().velocity = Vector3.zero;
+
 		fly (joystick.transform.root.eulerAngles);
 		Debug.Log (joystick.transform.position.y);
 		scaleBird ();
 	}
-
+		
 	void OnTriggerEnter(Collider other) { 
-		Debug.Log ("Bumped into another collider!!");
+		Debug.Log ("Bumped into another collider:");
+		Debug.Log (other.gameObject.name);
 	}
 
 	private void fly (Vector3 direction) { 
