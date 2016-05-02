@@ -93,7 +93,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 	private void fly_z_axis(float z) { 
 		if (!initial_z_set) { 
 			initial_z = z; 
-			Debug.Log (z);
+			//Debug.Log (z);
 			initial_z_set = true;
 		} else { 
 			if (z > initial_z + z_steering_sensitivity) { 
