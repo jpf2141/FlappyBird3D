@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 using ProgressBar.Utils;
@@ -94,6 +94,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 			subHealth (10.0f); 
 		} else if (other.gameObject.CompareTag ("Coin")) {
 			Debug.Log (other.gameObject.name);
+			Destroy (other.gameObject);
 			this.score += 25;
 			addScore (25.0f); 
 		}
@@ -116,7 +117,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 	public void checkHealth() { 
 		if(this.health <= 0 || this.healthBar.Value <= 0) {
-			EditorSceneManager.LoadScene ("Menu");
+			SceneManager.LoadScene ("Menu");
 			Debug.Log(this.healthBar.Value);
 		}
 	}
@@ -166,9 +167,9 @@ public class FlappyBirdPilot : MonoBehaviour {
 			initial_z_set = true;
 		} else { 
 			if (z > initial_z + z_steering_sensitivity) { 
-				gameObject.transform.position += Vector3.back * .05F;
-			} else if (z < initial_z - z_steering_sensitivity) { 
 				gameObject.transform.position += Vector3.forward * .05F;
+			} else if (z < initial_z - z_steering_sensitivity) { 
+				gameObject.transform.position += Vector3.back * .05F;
 			}
 		}
 	}
@@ -180,9 +181,9 @@ public class FlappyBirdPilot : MonoBehaviour {
 			initial_x_set = true; 
 		} else {
 			if (x > initial_x + x_steering_sensitivity) { 
-				gameObject.transform.position += Vector3.left * .05F;
-			} else if (x < initial_x - x_steering_sensitivity) { 
 				gameObject.transform.position += Vector3.right * .05F;
+			} else if (x < initial_x - x_steering_sensitivity) { 
+				gameObject.transform.position += Vector3.left * .05F;
 			}
 		}
 	}
