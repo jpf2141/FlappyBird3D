@@ -154,6 +154,8 @@
 'Assets/Vuforia/Scripts/WireframeBehaviour.cs'
 'Assets/Vuforia/Scripts/WireframeTrackableEventHandler.cs'
 'Assets/Vuforia/Scripts/WordBehaviour.cs'
+'Assets/collide.cs'
+'Assets/ray.cs'
 'Assets/vbutton.cs'
 'Assets/virtualbutton.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'

@@ -41,10 +41,11 @@ public class CloudFieldCreator : MonoBehaviour {
 			new Vector3(start * (1.0F / transform.localScale.x), 
 				Random.Range(y_limit_low, y_limit_high) * (1.0F / transform.localScale.y), 
 				Random.Range(z_limit_low, z_limit_high) * (1.0F / transform.localScale.z)), 
-			transform.rotation);
-	
+			transform.rotation);	
 		clone.transform.parent = track.transform; 
 		clone.transform.localScale = gameObject.transform.localScale;
+		clone.tag = "cloud"; 
+		clone.name = "Cloud";
 	}
 
 
