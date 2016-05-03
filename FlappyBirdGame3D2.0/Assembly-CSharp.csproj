@@ -72,7 +72,6 @@
      <Compile Include="Assets\LaserScript.cs" />
      <Compile Include="Assets\Scripts\CloudFieldCreator.cs" />
      <Compile Include="Assets\Scripts\CoinController.cs" />
-     <Compile Include="Assets\Scripts\DestroyerScript.cs" />
      <Compile Include="Assets\Scripts\FirstPersonController.cs" />
      <Compile Include="Assets\Scripts\FlappyBirdPilot.cs" />
      <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />

@@ -105,7 +105,7 @@
 'Assets/Cardboard/Scripts/VRDevices/UnityEditorDevice.cs'
 'Assets/LaserScript.cs'
 'Assets/Scripts/CloudFieldCreator.cs'
-'Assets/Scripts/DestroyerScript.cs'
+'Assets/Scripts/CoinController.cs'
 'Assets/Scripts/FirstPersonController.cs'
 'Assets/Scripts/FlappyBirdPilot.cs'
 'Assets/Scripts/NewBehaviourScript.cs'
