@@ -3,11 +3,13 @@
 -nowarn:0169
 -out:'Temp/Assembly-CSharp.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll'
 -r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll'
+-r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll'
 -r:'Assets/Vuforia/Scripts/Internal/Vuforia.UnityExtensions.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll'
--define:UNITY_5_3_2
+-r:'/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll'
+-r:'/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll'
+-define:UNITY_5_3_1
 -define:UNITY_5_3
 -define:UNITY_5
 -define:ENABLE_NEW_BUGREPORTER
@@ -101,7 +103,9 @@
 'Assets/Cardboard/Scripts/VRDevices/CardboardAndroidDevice.cs'
 'Assets/Cardboard/Scripts/VRDevices/CardboardiOSDevice.cs'
 'Assets/Cardboard/Scripts/VRDevices/UnityEditorDevice.cs'
+'Assets/LaserScript.cs'
 'Assets/Scripts/CloudFieldCreator.cs'
+'Assets/Scripts/CoinController.cs'
 'Assets/Scripts/DestroyerScript.cs'
 'Assets/Scripts/FirstPersonController.cs'
 'Assets/Scripts/FlappyBirdPilot.cs'

@@ -9,11 +9,11 @@ public class SpawnScript_Coin : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Spawn ();
+		//Spawn ();
 	}
 	
-	void Spawn () {
-		Instantiate(obj[Random.Range (0, obj.GetLength(0))],transform.position, Quaternion.identity);
-		Invoke ("Spawn", Random.Range (spawnMin, spawnMax));
-	}
+//	void Spawn () {
+//		Instantiate(obj[Random.Range (0, obj.GetLength(0))],transform.position, Quaternion.identity);
+//		Invoke ("Spawn", Random.Range (spawnMin, spawnMax));
+//	}
 }
