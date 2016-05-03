@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 using ProgressBar.Utils;
@@ -115,7 +116,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 	public void checkHealth() { 
 		if(this.health <= 0 || this.healthBar.Value <= 0) {
-			//load main menu
+			EditorSceneManager.LoadScene ("Menu");
 			Debug.Log(this.healthBar.Value);
 		}
 	}
