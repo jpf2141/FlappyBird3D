@@ -42,7 +42,7 @@ public class PipeController : MonoBehaviour {
 	}
 
 	public void setSpeed () { 
-		speedMultiplier += .difficulty;
+		speedMultiplier += difficulty;
 	}
 
 
