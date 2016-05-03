@@ -22,6 +22,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 
 	private float tilt;
+	public float tiltNerfer = 10; 
 	private float scaleMultiplier;
 	private float distanceScore;
 	public float difficulty; 
@@ -135,7 +136,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 			} else if (Input.GetKey (KeyCode.E)) {
 				gameObject.transform.localScale += new Vector3 (-0.01f, -0.01f, -0.01f);
 			} else {
-				tilt = Input.acceleration.x;	//iPhone scaling
+				tilt = Input.acceleration.x/tiltNerfer;	//iPhone scaling
 				gameObject.transform.localScale += new Vector3 (tilt, tilt, tilt);
 			}
 		} else if (gameObject.transform.localScale.x <= 0.01f) {
