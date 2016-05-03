@@ -8,6 +8,10 @@ public class PipeController : MonoBehaviour {
 
 	public GameObject track;
 
+	private float speedMultiplier = 1; 
+	public float difficulty = .0001f; 
+
+
 	private bool hasDuplicated = false; 
 
 	// Use this for initialization
@@ -23,7 +27,8 @@ public class PipeController : MonoBehaviour {
 			Destroy (gameObject);
 		}
 
-		gameObject.transform.position += gameObject.transform.right * -1.5f * Time.deltaTime;
+		gameObject.transform.position += gameObject.transform.right * -1.5f * Time.deltaTime * speedMultiplier;
+		setSpeed (); 
 	}
 
 	private void createNewPipes() { 
@@ -35,5 +40,12 @@ public class PipeController : MonoBehaviour {
 		clone.transform.parent = track.transform; 
 		clone.transform.localScale = gameObject.transform.localScale;
 	}
+
+	public void setSpeed () { 
+		speedMultiplier += .difficulty;
+	}
+
+
 }
+
 

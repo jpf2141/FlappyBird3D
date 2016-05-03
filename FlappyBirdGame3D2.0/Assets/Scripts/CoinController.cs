@@ -10,6 +10,9 @@ public class CoinController : MonoBehaviour {
 	public float maxHeight;
 	public float minHeight; 
 
+	private float speedMultiplier = 1; 
+	public float difficulty = .0001f; 
+
 	public GameObject track;
 
 	private bool hasDuplicated = false; 
@@ -21,13 +24,15 @@ public class CoinController : MonoBehaviour {
 	}
 	
 	void Update () {
+		
 		if (gameObject.transform.position.x < middle * (1.0F / transform.localScale.x) && !hasDuplicated) {
 			createNewCoin ();
 			hasDuplicated = true;
 		} else if (gameObject.transform.position.x < end * (1.0F / transform.localScale.x)) { 
 			Destroy (gameObject);
 		}
-		gameObject.transform.position += gameObject.transform.right * -1.5f * Time.deltaTime;
+		gameObject.transform.position += gameObject.transform.right * -1.5f * Time.deltaTime * speedMultiplier;
+		setSpeed (); 
 	}
 
 	private void createNewCoin() { 
@@ -39,4 +44,11 @@ public class CoinController : MonoBehaviour {
 		clone.transform.parent = track.transform; 
 		clone.transform.localScale = gameObject.transform.localScale;
 	}
+
+	public void setSpeed () { 
+		speedMultiplier += difficulty;
+	}
+		
+
+
 }

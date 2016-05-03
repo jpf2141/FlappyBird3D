@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class FlappyBirdPilot : MonoBehaviour {
+
+
+
 	public GameObject joystick;
 	public float y_force; 
 	public float z_force;
@@ -64,7 +67,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 			} else if (Input.GetKey (KeyCode.E)) {
 				gameObject.transform.localScale += new Vector3 (-0.01f, -0.01f, -0.01f);
 			} else {
-				tilt = Input.acceleration.x;
+				tilt = Input.acceleration.x;	//iPhone scaling
 				gameObject.transform.localScale += new Vector3 (tilt, tilt, tilt);
 			}
 		} else if (gameObject.transform.localScale.x <= 0.01f) {
