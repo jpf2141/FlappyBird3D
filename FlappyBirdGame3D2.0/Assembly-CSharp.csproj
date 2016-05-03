@@ -150,11 +150,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Vuforia.UnityExtensions">
-<<<<<<< HEAD
- <HintPath>/Users/KD/Desktop/FlappyBird3D/FlappyBirdGame3D2.0/Assets/Vuforia/Scripts/Internal/Vuforia.UnityExtensions.dll</HintPath>
-=======
  <HintPath>/Users/joshfram/Documents/Columbia/Senior/3DUI/FlappyBird3D/FlappyBirdGame3D2.0/Assets/Vuforia/Scripts/Internal/Vuforia.UnityExtensions.dll</HintPath>
->>>>>>> aab21be8d49713f069e69c2bdc1c4911640da055
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
