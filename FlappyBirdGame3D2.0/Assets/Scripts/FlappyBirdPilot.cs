@@ -10,10 +10,9 @@ public class FlappyBirdPilot : MonoBehaviour {
 	private float health;
 	public ProgressBar.ProgressBarBehaviour healthBar;
 	public ProgressBar.ProgressBarBehaviour scoreBar;
+	public Text levelText;
 
 
-
-	public float difficulty; 
 
 
 	public GameObject joystick;
@@ -23,6 +22,8 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 	private float tilt;
 	private float scaleMultiplier;
+	private float distanceScore;
+	public float difficulty; 
 
 	public GameObject stadium;
 
@@ -40,11 +41,13 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-//		this.score = 0;
-//		this.health = 10;
-		healthBar.Value = 100.0f;
-		scoreBar.Value = 0.0f;
-	}
+		this.score = 0.0f;
+		this.health = 100.0f;
+		this.level = 1;
+		this.levelText.text = "Level " + this.level;
+		healthBar.Value = 100.0f;	//initalize health bar
+		scoreBar.Value = 0.0f;		//initialize score bar
+	}	
 	
 	// Update is called once per frame
 	void Update () {
@@ -67,6 +70,14 @@ public class FlappyBirdPilot : MonoBehaviour {
 		fly_z_axis (joystick.transform.rotation.z);
 		fly_x_axis (joystick.transform.rotation.x);
 
+		/*********** GENERATE SCORE FROM DISTANCE ***************************/
+		distanceScore += (.1f * scaleMultiplier);
+		if (distanceScore >= 1.0f) { 
+			this.score += 1.0f;
+			addScore (1.0f);
+			distanceScore = 0.0f;
+		}
+
 		scaleBird ();
 		setSpeed (); 
 	}
@@ -74,29 +85,40 @@ public class FlappyBirdPilot : MonoBehaviour {
 	void OnTriggerEnter(Collider other) { 
 		if (other.gameObject.CompareTag ("Pipe")) {
 			Debug.Log (other.gameObject.name);
-			//this.health -= 5;
+			this.health -= 25;
 			subHealth (25.0f); 
 		} else if (other.gameObject.CompareTag ("Cloud")) {
 			Debug.Log (other.gameObject.name);
-			//this.health -= 1;
+			this.health -= 10;
 			subHealth (10.0f); 
 		} else if (other.gameObject.CompareTag ("Coin")) {
 			Debug.Log (other.gameObject.name);
-			//this.score += 1;
-			addScore (5.0f); 
+			this.score += 25;
+			addScore (25.0f); 
 		}
+		this.checkHealth (); 
 	}
 
 	private void subHealth(float hit) { 
 		this.healthBar.DecrementValue(hit);
-
-
-
 	}
 
 	private void addScore(float increase) { 
 		this.scoreBar.IncrementValue(increase);
 	} 
+
+	public void levelUp() { 
+		this.scoreBar.Value = 0.0f;
+		this.level += 1;
+		this.levelText.text = "Level " + this.level;
+	}
+
+	public void checkHealth() { 
+		if(this.health <= 0 || this.healthBar.Value <= 0) {
+			//load main menu
+			Debug.Log(this.healthBar.Value);
+		}
+	}
 
 	public void setSpeed () { 
 		CoinController.setSpeed (this.difficulty); 
@@ -134,7 +156,6 @@ public class FlappyBirdPilot : MonoBehaviour {
 				gameObject.transform.position += Vector3.down * .05F;
 			}
 		}
-
 	}
 
 	private void fly_z_axis(float z) { 
