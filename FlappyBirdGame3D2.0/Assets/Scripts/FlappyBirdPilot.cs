@@ -1,8 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using ProgressBar.Utils;
 
 public class FlappyBirdPilot : MonoBehaviour {
 
+	private int level;
+	private float score;	
+	private float health;
+	public ProgressBar.ProgressBarBehaviour healthBar;
+	public ProgressBar.ProgressBarBehaviour scoreBar;
+
+
+
+	public float difficulty; 
 
 
 	public GameObject joystick;
@@ -29,6 +40,10 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+//		this.score = 0;
+//		this.health = 10;
+		healthBar.Value = 100.0f;
+		scoreBar.Value = 0.0f;
 	}
 	
 	// Update is called once per frame
@@ -53,11 +68,40 @@ public class FlappyBirdPilot : MonoBehaviour {
 		fly_x_axis (joystick.transform.rotation.x);
 
 		scaleBird ();
+		setSpeed (); 
 	}
 		
 	void OnTriggerEnter(Collider other) { 
-		Debug.Log ("Bumped into another collider:");
-		Debug.Log (other.gameObject.name);
+		if (other.gameObject.CompareTag ("Pipe")) {
+			Debug.Log (other.gameObject.name);
+			//this.health -= 5;
+			subHealth (25.0f); 
+		} else if (other.gameObject.CompareTag ("Cloud")) {
+			Debug.Log (other.gameObject.name);
+			//this.health -= 1;
+			subHealth (10.0f); 
+		} else if (other.gameObject.CompareTag ("Coin")) {
+			Debug.Log (other.gameObject.name);
+			//this.score += 1;
+			addScore (5.0f); 
+		}
+	}
+
+	private void subHealth(float hit) { 
+		this.healthBar.DecrementValue(hit);
+
+
+
+	}
+
+	private void addScore(float increase) { 
+		this.scoreBar.IncrementValue(increase);
+	} 
+
+	public void setSpeed () { 
+		CoinController.setSpeed (this.difficulty); 
+		PipeController.setSpeed (this.difficulty); 
+		CloudFieldCreator.setSpeed (this.difficulty); 
 	}
 
 	private void scaleBird() { 

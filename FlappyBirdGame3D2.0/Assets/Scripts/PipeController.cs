@@ -8,8 +8,7 @@ public class PipeController : MonoBehaviour {
 
 	public GameObject track;
 
-	private float speedMultiplier = 1; 
-	public float difficulty = .0001f; 
+	private static float speedMultiplier = 1; 
 
 
 	private bool hasDuplicated = false; 
@@ -28,7 +27,6 @@ public class PipeController : MonoBehaviour {
 		}
 
 		gameObject.transform.position += gameObject.transform.right * -1.5f * Time.deltaTime * speedMultiplier;
-		setSpeed (); 
 	}
 
 	private void createNewPipes() { 
@@ -41,9 +39,10 @@ public class PipeController : MonoBehaviour {
 		clone.transform.localScale = gameObject.transform.localScale;
 	}
 
-	public void setSpeed () { 
+	public static void setSpeed (float difficulty) { 
 		speedMultiplier += difficulty;
 	}
+
 
 
 }

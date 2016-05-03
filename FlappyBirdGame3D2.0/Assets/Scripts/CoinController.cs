@@ -10,8 +10,7 @@ public class CoinController : MonoBehaviour {
 	public float maxHeight;
 	public float minHeight; 
 
-	private float speedMultiplier = 1; 
-	public float difficulty = .0001f; 
+	private static float speedMultiplier = 1; 
 
 	public GameObject track;
 
@@ -32,7 +31,6 @@ public class CoinController : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		gameObject.transform.position += gameObject.transform.right * -1.5f * Time.deltaTime * speedMultiplier;
-		setSpeed (); 
 	}
 
 	private void createNewCoin() { 
@@ -45,7 +43,7 @@ public class CoinController : MonoBehaviour {
 		clone.transform.localScale = gameObject.transform.localScale;
 	}
 
-	public void setSpeed () { 
+	public static void setSpeed (float difficulty) { 
 		speedMultiplier += difficulty;
 	}
 		

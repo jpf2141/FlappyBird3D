@@ -14,7 +14,7 @@ public class CloudFieldCreator : MonoBehaviour {
 
 	public GameObject track;
 
-	private float speedMultiplier = 1;
+	private static float speedMultiplier = 1;
 	public float difficulty = .0001f; 
 
 
@@ -34,7 +34,6 @@ public class CloudFieldCreator : MonoBehaviour {
 		}
 
 		gameObject.transform.position += gameObject.transform.right * -1.5f * Time.deltaTime * speedMultiplier;
-		setSpeed (); 
 	}
 
 	private void createNewClouds() { 
@@ -49,7 +48,7 @@ public class CloudFieldCreator : MonoBehaviour {
 	}
 
 
-	public void setSpeed () { 
+	public static void setSpeed (float difficulty) { 
 		speedMultiplier += difficulty;
 	}
 }
