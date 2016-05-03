@@ -2,14 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FlappyBirdPilot.cs">
     <Files>
-      <File FileName="Assets/Scripts/FirstPersonController.cs" Line="14" Column="18" />
+      <File FileName="Assets/Scripts/FlappyBirdPilot.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/FirstPersonController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/NewBehaviourScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/FlappyBirdPilot.cs" Line="23" Column="28" />
-      <File FileName="Assets/Scripts/CoinController.cs" Line="14" Column="1" />
-      <File FileName="Assets/Scripts/PipeController.cs" Line="42" Column="47" />
-      <File FileName="Assets/Scripts/CloudFieldCreator.cs" Line="51" Column="47" />
-      <File FileName="Assets/Scripts/Rotator.cs" Line="13" Column="12" />
-      <File FileName="Assets/vbutton.cs" Line="29" Column="31" />
+      <File FileName="Assets/Scripts/CoinController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PipeController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CloudFieldCreator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Rotator.cs" Line="1" Column="1" />
+      <File FileName="Assets/vbutton.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
