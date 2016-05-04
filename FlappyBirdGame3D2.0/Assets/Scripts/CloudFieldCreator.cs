@@ -44,7 +44,7 @@ public class CloudFieldCreator : MonoBehaviour {
 			transform.rotation);	
 		clone.transform.parent = track.transform; 
 		clone.transform.localScale = gameObject.transform.localScale;
-		clone.tag = "cloud"; 
+		clone.tag = "Cloud"; 
 		clone.name = "Cloud";
 	}
 

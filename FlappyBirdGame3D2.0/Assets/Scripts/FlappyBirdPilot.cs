@@ -13,7 +13,9 @@ public class FlappyBirdPilot : MonoBehaviour {
 	public ProgressBar.ProgressBarBehaviour scoreBar;
 	public Text levelText;
 
-
+	public AudioClip coinSound;
+	public AudioClip cloudSound;
+	private AudioSource source;
 
 
 	public GameObject joystick;
@@ -43,6 +45,9 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		source = GetComponent<AudioSource> (); 
+
 		this.score = 0.0f;
 		this.health = 100.0f;
 		this.level = 1;
@@ -89,15 +94,20 @@ public class FlappyBirdPilot : MonoBehaviour {
 			Debug.Log (other.gameObject.name);
 			this.health -= 25;
 			subHealth (25.0f); 
+			source.PlayOneShot (cloudSound, 1);
 		} else if (other.gameObject.CompareTag ("Cloud")) {
 			Debug.Log (other.gameObject.name);
 			this.health -= 10;
 			subHealth (10.0f); 
+			source.PlayOneShot (cloudSound, 1);
+			Destroy(other.gameObject);
 		} else if (other.gameObject.CompareTag ("Coin")) {
 			Debug.Log (other.gameObject.name);
 			Destroy (other.gameObject);
 			this.score += 25;
 			addScore (25.0f); 
+			source.PlayOneShot (coinSound, 1);
+			Destroy(other.gameObject);
 		}
 		this.checkHealth (); 
 	}
