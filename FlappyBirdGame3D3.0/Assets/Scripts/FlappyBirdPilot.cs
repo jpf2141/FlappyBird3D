@@ -202,9 +202,9 @@ public class FlappyBirdPilot : MonoBehaviour {
 			initial_z_set = true;
 		} else { 
 			if (z > initial_z + z_steering_sensitivity) { 
-				gameObject.transform.position += Vector3.back * birdSpeed;
-			} else if (z < initial_z - z_steering_sensitivity) { 
 				gameObject.transform.position += Vector3.forward * birdSpeed;
+			} else if (z < initial_z - z_steering_sensitivity) { 
+				gameObject.transform.position += Vector3.back * birdSpeed;
 			}
 		}
 	}
@@ -216,9 +216,9 @@ public class FlappyBirdPilot : MonoBehaviour {
 			initial_x_set = true; 
 		} else {
 			if (x > initial_x + x_steering_sensitivity) { 
-				gameObject.transform.position += Vector3.left * birdSpeed;
-			} else if (x < initial_x - x_steering_sensitivity) { 
 				gameObject.transform.position += Vector3.right * birdSpeed;
+			} else if (x < initial_x - x_steering_sensitivity) { 
+				gameObject.transform.position += Vector3.left * birdSpeed;
 			}
 		}
 	}
