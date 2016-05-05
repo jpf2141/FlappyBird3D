@@ -8,7 +8,9 @@ public class MainMenuController : MonoBehaviour {
 	void Start () {
 
 		//DontDestroyOnLoad ();
-
+		if (FlappyBirdPilot.fromGame == true) { 
+			Debug.Log (FlappyBirdPilot.level);
+		}
 
 	
 	}

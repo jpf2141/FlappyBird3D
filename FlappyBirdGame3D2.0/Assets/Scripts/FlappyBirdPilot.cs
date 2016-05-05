@@ -6,7 +6,8 @@ using ProgressBar.Utils;
 
 public class FlappyBirdPilot : MonoBehaviour {
 
-	private static int level;
+	public static int level;
+	public static bool fromGame = false;
 	private float score;	
 	private float health;
 	public ProgressBar.ProgressBarBehaviour healthBar;
@@ -24,7 +25,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 
 	private float tilt;
-	public float tiltNerfer = 10; 
+	public float tiltNerfer = 100; 
 	private float scaleMultiplier;
 	private float distanceScore;
 	public float difficulty; 
@@ -51,6 +52,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 		this.score = 0.0f;
 		this.health = 100.0f;
 		level = 1;
+		fromGame = true;
 		this.levelText.text = "Level " + level;
 		healthBar.Value = 100.0f;	//initalize health bar
 		scoreBar.Value = 0.0f;		//initialize score bar
@@ -142,17 +144,19 @@ public class FlappyBirdPilot : MonoBehaviour {
 	private void scaleBird() { 
 		if (gameObject.transform.localScale.x >= 0.01f && gameObject.transform.localScale.x <= 0.2f) { 
 			if (Input.GetKey (KeyCode.Q)) {
-				gameObject.transform.localScale += new Vector3 (0.01f, 0.01f, 0.01f);
+				tilt = 0.01f/tiltNerfer;
+				gameObject.transform.localScale += new Vector3 (tilt, tilt, tilt);
 			} else if (Input.GetKey (KeyCode.E)) {
-				gameObject.transform.localScale += new Vector3 (-0.01f, -0.01f, -0.01f);
+				tilt = -0.01f/tiltNerfer;
+				gameObject.transform.localScale += new Vector3 (tilt, tilt, tilt);
 			} else {
 				tilt = Input.acceleration.x/tiltNerfer;	//iPhone scaling
 				gameObject.transform.localScale += new Vector3 (tilt, tilt, tilt);
 			}
 		} else if (gameObject.transform.localScale.x <= 0.01f) {
-			gameObject.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+			gameObject.transform.localScale = new Vector3 (0.01f, 0.01f, 0.01f);
 		} else if (gameObject.transform.localScale.x >= 0.2f) {
-			gameObject.transform.localScale = new Vector3 (0.19f, 0.19f, 0.19f);
+			gameObject.transform.localScale = new Vector3 (0.2f, 0.2f, 0.2f);
 		}
 		scaleMultiplier = gameObject.transform.localScale.x * 10;
 	}
