@@ -216,9 +216,9 @@ public class FlappyBirdPilot : MonoBehaviour {
 			initial_x_set = true; 
 		} else {
 			if (x > initial_x + x_steering_sensitivity) { 
-				gameObject.transform.position += Vector3.left * .01F;
+				gameObject.transform.position += Vector3.left * birdSpeed;
 			} else if (x < initial_x - x_steering_sensitivity) { 
-				gameObject.transform.position += Vector3.right * .01F;
+				gameObject.transform.position += Vector3.right * birdSpeed;
 			}
 		}
 	}
