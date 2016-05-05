@@ -6,7 +6,7 @@ using ProgressBar.Utils;
 
 public class FlappyBirdPilot : MonoBehaviour {
 
-	private int level;
+	private static int level;
 	private float score;	
 	private float health;
 	public ProgressBar.ProgressBarBehaviour healthBar;
@@ -50,8 +50,8 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 		this.score = 0.0f;
 		this.health = 100.0f;
-		this.level = 1;
-		this.levelText.text = "Level " + this.level;
+		level = 1;
+		this.levelText.text = "Level " + level;
 		healthBar.Value = 100.0f;	//initalize health bar
 		scoreBar.Value = 0.0f;		//initialize score bar
 	}	
@@ -122,8 +122,8 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 	public void levelUp() { 
 		this.scoreBar.Value = 0.0f;
-		this.level += 1;
-		this.levelText.text = "Level " + this.level;
+		level += 1;
+		this.levelText.text = "Level " + level;
 	}
 
 	public void checkHealth() { 
