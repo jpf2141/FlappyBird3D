@@ -7,6 +7,7 @@ using ProgressBar.Utils;
 public class FlappyBirdPilot : MonoBehaviour {
 
 	public static int level;
+	public static bool easy = true;
 	public static bool fromGame = false;
 	private float score;	
 	private float health;
@@ -25,7 +26,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 
 	private float tilt;
-	public float tiltNerfer = 100; 
+	public float tiltNerfer = 10000; 
 	private float scaleMultiplier;
 	private float distanceScore;
 	public float difficulty; 
@@ -79,14 +80,9 @@ public class FlappyBirdPilot : MonoBehaviour {
 		fly_z_axis (joystick.transform.rotation.z);
 		fly_x_axis (joystick.transform.rotation.x);
 
-		/*********** GENERATE SCORE FROM DISTANCE ***************************/
-		distanceScore += (.1f * scaleMultiplier);
-		if (distanceScore >= 1.0f) { 
-			this.score += 1.0f;
-			addScore (1.0f);
-			distanceScore = 0.0f;
-		}
 
+		setDifficulty ();
+		generateDistanceScore ();
 		scaleBird ();
 		setSpeed (); 
 	}
@@ -113,6 +109,25 @@ public class FlappyBirdPilot : MonoBehaviour {
 		}
 		this.checkHealth (); 
 	}
+
+
+	private void setDifficulty () { 
+		if (FlappyBirdPilot.easy == true) { 
+			difficulty = .0001f;
+		} else {
+			difficulty = .001f;
+		}
+	}
+
+	private void generateDistanceScore () { 
+		distanceScore += (.1f * scaleMultiplier);
+		if (distanceScore >= 1.0f) { 
+			this.score += 1.0f;
+			addScore (1.0f);
+			distanceScore = 0.0f;
+		}
+	}
+
 
 	private void subHealth(float hit) { 
 		this.healthBar.DecrementValue(hit);
@@ -142,7 +157,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 	}
 
 	private void scaleBird() { 
-		if (gameObject.transform.localScale.x >= 0.01f && gameObject.transform.localScale.x <= 0.2f) { 
+		if (gameObject.transform.localScale.x >= 0.02f && gameObject.transform.localScale.x <= 0.06f) { 
 			if (Input.GetKey (KeyCode.Q)) {
 				tilt = 0.01f/tiltNerfer;
 				gameObject.transform.localScale += new Vector3 (tilt, tilt, tilt);
@@ -153,10 +168,10 @@ public class FlappyBirdPilot : MonoBehaviour {
 				tilt = Input.acceleration.x/tiltNerfer;	//iPhone scaling
 				gameObject.transform.localScale += new Vector3 (tilt, tilt, tilt);
 			}
-		} else if (gameObject.transform.localScale.x <= 0.01f) {
-			gameObject.transform.localScale = new Vector3 (0.01f, 0.01f, 0.01f);
-		} else if (gameObject.transform.localScale.x >= 0.2f) {
-			gameObject.transform.localScale = new Vector3 (0.2f, 0.2f, 0.2f);
+		} else if (gameObject.transform.localScale.x <= 0.02f) {
+			gameObject.transform.localScale = new Vector3 (0.02f, 0.02f, 0.02f);
+		} else if (gameObject.transform.localScale.x >= 0.06f) {
+			gameObject.transform.localScale = new Vector3 (0.06f, 0.06f, 0.06f);
 		}
 		scaleMultiplier = gameObject.transform.localScale.x * 10;
 	}

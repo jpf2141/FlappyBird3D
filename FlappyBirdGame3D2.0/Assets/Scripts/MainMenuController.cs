@@ -24,6 +24,13 @@ public class MainMenuController : MonoBehaviour {
 	void Update () {
 		if (Input.touchCount > 0 || Input.GetMouseButtonDown (0)) { 
 			SceneManager.LoadScene ("Game");
+		} else if (Input.gyro.attitude.x > 30.0f) {
+			FlappyBirdPilot.easy = false;
+			SceneManager.LoadScene ("Game");
+		} else if (Input.gyro.attitude.x < -30.0f) { 
+			
+			FlappyBirdPilot.easy = false;
+			SceneManager.LoadScene ("Game");
 		}
 	}
 }
