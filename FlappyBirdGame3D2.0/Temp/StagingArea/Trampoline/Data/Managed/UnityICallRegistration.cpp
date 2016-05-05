@@ -1,4 +1,4 @@
-//Generated on : 5/4/2016 10:44:16 PM
+//Generated on : 5/4/2016 11:48:52 PM
 void RegisterAllStrippedInternalCalls()
 {
 	//Start Registrations for type : UnityEngine.AnimationCurve
@@ -77,6 +77,18 @@ void RegisterAllStrippedInternalCalls()
 
 	//End Registrations for type : UnityEngine.Application
 
+	//Start Registrations for type : UnityEngine.AssetBundle
+
+		//UnityEngine.Object UnityEngine.AssetBundle::LoadAsset_Internal(System.String,System.Type)
+		void Register_UnityEngine_AssetBundle_LoadAsset_Internal();
+		Register_UnityEngine_AssetBundle_LoadAsset_Internal();
+
+		//UnityEngine.Object[] UnityEngine.AssetBundle::LoadAssetWithSubAssets_Internal(System.String,System.Type)
+		void Register_UnityEngine_AssetBundle_LoadAssetWithSubAssets_Internal();
+		Register_UnityEngine_AssetBundle_LoadAssetWithSubAssets_Internal();
+
+	//End Registrations for type : UnityEngine.AssetBundle
+
 	//Start Registrations for type : UnityEngine.AssetBundleCreateRequest
 
 		//System.Void UnityEngine.AssetBundleCreateRequest::DisableCompatibilityChecks()
@@ -88,18 +100,6 @@ void RegisterAllStrippedInternalCalls()
 		Register_UnityEngine_AssetBundleCreateRequest_get_assetBundle();
 
 	//End Registrations for type : UnityEngine.AssetBundleCreateRequest
-
-	//Start Registrations for type : UnityEngine.AssetBundleRequest
-
-		//UnityEngine.Object UnityEngine.AssetBundleRequest::get_asset()
-		void Register_UnityEngine_AssetBundleRequest_get_asset();
-		Register_UnityEngine_AssetBundleRequest_get_asset();
-
-		//UnityEngine.Object[] UnityEngine.AssetBundleRequest::get_allAssets()
-		void Register_UnityEngine_AssetBundleRequest_get_allAssets();
-		Register_UnityEngine_AssetBundleRequest_get_allAssets();
-
-	//End Registrations for type : UnityEngine.AssetBundleRequest
 
 	//Start Registrations for type : UnityEngine.AsyncOperation
 
@@ -487,6 +487,10 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Canvas_get_sortingOrder();
 		Register_UnityEngine_Canvas_get_sortingOrder();
 
+		//System.Int32 UnityEngine.Canvas::get_targetDisplay()
+		void Register_UnityEngine_Canvas_get_targetDisplay();
+		Register_UnityEngine_Canvas_get_targetDisplay();
+
 		//System.Single UnityEngine.Canvas::get_referencePixelsPerUnit()
 		void Register_UnityEngine_Canvas_get_referencePixelsPerUnit();
 		Register_UnityEngine_Canvas_get_referencePixelsPerUnit();
@@ -738,6 +742,14 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.Display::GetRenderingBuffersImpl(System.IntPtr,UnityEngine.RenderBuffer&,UnityEngine.RenderBuffer&)
 		void Register_UnityEngine_Display_GetRenderingBuffersImpl();
 		Register_UnityEngine_Display_GetRenderingBuffersImpl();
+
+		//System.Void UnityEngine.Display::GetRenderingExtImpl(System.IntPtr,System.Int32&,System.Int32&)
+		void Register_UnityEngine_Display_GetRenderingExtImpl();
+		Register_UnityEngine_Display_GetRenderingExtImpl();
+
+		//System.Void UnityEngine.Display::GetSystemExtImpl(System.IntPtr,System.Int32&,System.Int32&)
+		void Register_UnityEngine_Display_GetSystemExtImpl();
+		Register_UnityEngine_Display_GetSystemExtImpl();
 
 	//End Registrations for type : UnityEngine.Display
 
@@ -2079,9 +2091,9 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Physics2D_INTERNAL_CALL_Internal_Raycast();
 		Register_UnityEngine_Physics2D_INTERNAL_CALL_Internal_Raycast();
 
-		//UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::INTERNAL_CALL_GetRayIntersectionAll(UnityEngine.Ray&,System.Single,System.Int32)
-		void Register_UnityEngine_Physics2D_INTERNAL_CALL_GetRayIntersectionAll();
-		Register_UnityEngine_Physics2D_INTERNAL_CALL_GetRayIntersectionAll();
+		//UnityEngine.RaycastHit2D[] UnityEngine.Physics2D::INTERNAL_CALL_RaycastAll(UnityEngine.Vector2&,UnityEngine.Vector2&,System.Single,System.Int32,System.Single,System.Single)
+		void Register_UnityEngine_Physics2D_INTERNAL_CALL_RaycastAll();
+		Register_UnityEngine_Physics2D_INTERNAL_CALL_RaycastAll();
 
 	//End Registrations for type : UnityEngine.Physics2D
 
@@ -2411,6 +2423,10 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Screen_get_autorotateToPortraitUpsideDown();
 		Register_UnityEngine_Screen_get_autorotateToPortraitUpsideDown();
 
+		//System.Boolean UnityEngine.Screen::get_fullScreen()
+		void Register_UnityEngine_Screen_get_fullScreen();
+		Register_UnityEngine_Screen_get_fullScreen();
+
 		//System.Int32 UnityEngine.Screen::get_height()
 		void Register_UnityEngine_Screen_get_height();
 		Register_UnityEngine_Screen_get_height();
@@ -2662,10 +2678,6 @@ void RegisterAllStrippedInternalCalls()
 		//System.Boolean UnityEngine.TextGenerator::INTERNAL_CALL_Populate_Internal_cpp(UnityEngine.TextGenerator,System.String,UnityEngine.Font,UnityEngine.Color&,System.Int32,System.Single,System.Single,UnityEngine.FontStyle,System.Boolean,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,UnityEngine.TextAnchor,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Boolean)
 		void Register_UnityEngine_TextGenerator_INTERNAL_CALL_Populate_Internal_cpp();
 		Register_UnityEngine_TextGenerator_INTERNAL_CALL_Populate_Internal_cpp();
-
-		//System.Int32 UnityEngine.TextGenerator::get_characterCount()
-		void Register_UnityEngine_TextGenerator_get_characterCount();
-		Register_UnityEngine_TextGenerator_get_characterCount();
 
 		//System.Int32 UnityEngine.TextGenerator::get_lineCount()
 		void Register_UnityEngine_TextGenerator_get_lineCount();

@@ -74,9 +74,6 @@
 // shows game itself (hides splash, and bring _rootView to front)
 - (void)showGameUI;
 
-// returns the topmost presentedViewController if there is one, or just rootViewController
-- (UIViewController*)topMostController;
-
 // will create or return from cache correct view controller for requested orientation
 - (UIViewController*)createRootViewController;
 #if !UNITY_TVOS

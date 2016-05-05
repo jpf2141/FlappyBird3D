@@ -76,11 +76,6 @@ static void ViewWillTransitionToSize_DefaultImpl(id self_, SEL _cmd, CGSize size
 	return _PreferredStatusBarStyle;
 }
 
-- (void)viewDidLayoutSubviews {
-	[super viewWillLayoutSubviews];
-	AppController_SendUnityViewControllerNotification(kUnityViewDidLayoutSubviews);
-}
-
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];

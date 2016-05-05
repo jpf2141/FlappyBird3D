@@ -23,7 +23,6 @@
 @property (nonatomic, readonly) AVPlayer* player;
 
 + (BOOL)CanPlayToTexture:(NSURL*)url;
-+ (BOOL)CheckScalingModeAspectFill:(CGSize)videoSize screenSize:(CGSize)screenSize;
 
 - (BOOL)loadVideo:(NSURL*)url;
 - (BOOL)readyToPlay;

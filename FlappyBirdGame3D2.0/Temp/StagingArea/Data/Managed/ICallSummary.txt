@@ -14,10 +14,10 @@ UnityEngine.Application::set_runInBackground
 UnityEngine.Application::set_targetFrameRate
 UnityEngine.Application::RequestUserAuthorization
 UnityEngine.Application::get_platform
+UnityEngine.AssetBundle::LoadAsset_Internal
+UnityEngine.AssetBundle::LoadAssetWithSubAssets_Internal
 UnityEngine.AssetBundleCreateRequest::DisableCompatibilityChecks
 UnityEngine.AssetBundleCreateRequest::get_assetBundle
-UnityEngine.AssetBundleRequest::get_asset
-UnityEngine.AssetBundleRequest::get_allAssets
 UnityEngine.AsyncOperation::get_allowSceneActivation
 UnityEngine.AsyncOperation::get_isDone
 UnityEngine.AsyncOperation::get_priority
@@ -107,6 +107,7 @@ UnityEngine.Canvas::get_pixelPerfect
 UnityEngine.Canvas::get_renderOrder
 UnityEngine.Canvas::get_sortingLayerID
 UnityEngine.Canvas::get_sortingOrder
+UnityEngine.Canvas::get_targetDisplay
 UnityEngine.Canvas::get_referencePixelsPerUnit
 UnityEngine.Canvas::get_scaleFactor
 UnityEngine.Canvas::set_overrideSorting
@@ -161,6 +162,8 @@ UnityEngine.CullingGroup::FinalizerFailure
 UnityEngine.DebugLogHandler::Internal_Log
 UnityEngine.DebugLogHandler::Internal_LogException
 UnityEngine.Display::GetRenderingBuffersImpl
+UnityEngine.Display::GetRenderingExtImpl
+UnityEngine.Display::GetSystemExtImpl
 UnityEngine.Event::PopEvent
 UnityEngine.Event::get_character
 UnityEngine.Event::get_commandName
@@ -462,7 +465,7 @@ UnityEngine.Physics::INTERNAL_CALL_Internal_Raycast
 UnityEngine.Physics::INTERNAL_CALL_CapsuleCastAll
 UnityEngine.Physics::INTERNAL_CALL_RaycastAll
 UnityEngine.Physics2D::INTERNAL_CALL_Internal_Raycast
-UnityEngine.Physics2D::INTERNAL_CALL_GetRayIntersectionAll
+UnityEngine.Physics2D::INTERNAL_CALL_RaycastAll
 UnityEngine.QualitySettings::get_antiAliasing
 UnityEngine.QualitySettings::get_activeColorSpace
 UnityEngine.Quaternion::INTERNAL_CALL_AngleAxis
@@ -533,6 +536,7 @@ UnityEngine.Screen::get_autorotateToLandscapeLeft
 UnityEngine.Screen::get_autorotateToLandscapeRight
 UnityEngine.Screen::get_autorotateToPortrait
 UnityEngine.Screen::get_autorotateToPortraitUpsideDown
+UnityEngine.Screen::get_fullScreen
 UnityEngine.Screen::get_height
 UnityEngine.Screen::get_width
 UnityEngine.Screen::get_dpi
@@ -587,7 +591,6 @@ UnityEngine.Sprites.DataUtility::INTERNAL_CALL_GetOuterUV
 UnityEngine.Sprites.DataUtility::INTERNAL_CALL_GetPadding
 UnityEngine.Sprites.DataUtility::Internal_GetMinSize
 UnityEngine.TextGenerator::INTERNAL_CALL_Populate_Internal_cpp
-UnityEngine.TextGenerator::get_characterCount
 UnityEngine.TextGenerator::get_lineCount
 UnityEngine.TextGenerator::get_vertexCount
 UnityEngine.TextGenerator::Dispose_cpp

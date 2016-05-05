@@ -59,11 +59,10 @@ extern "C" const char* const* UnityFontFallbacks()
 		"Noto Sans Yi",			// Yi characters on 9.0 (Yi is not available on tvOS)
 		"Helvetica",
 		"Helvetica Neue",
-		"Arial Hebrew",			// Hebrew since 9.0
-		"Kohinoor Devanagari",	// Hindi since 9.0
-		"Kohinoor Bangla",		// Bengali since 9.0
-		"Kohinoor Telugu",		// Telugu since 9.0
-		"Lao Sangam MN",		// Lao
+		"Arial Hebrew",			// Hebrew on tvOS
+		"Kohinoor Devanagari",	// Hindi on tvOS
+		"Kohinoor Bangla",		// Bengali on tvOS
+		"Kohinoor Telugu",		// Telugu on tvOS
 		".LastResort",
 		NULL
 	};

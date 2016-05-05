@@ -69,33 +69,7 @@ static void* _ObservePlayerItemContext = (void*)0x2;
 
 
 + (BOOL)CanPlayToTexture:(NSURL*)url	{ return [url isFileURL]; }
-+ (BOOL)CheckScalingModeAspectFill:(CGSize)videoSize screenSize:(CGSize)screenSize
-{
-	BOOL ret = NO;
 
-	CGFloat screenAspect = (screenSize.width / screenSize.height);
-	CGFloat videoAspect = (videoSize.width / videoSize.height);
-
-	CGFloat width = ceilf(videoSize.width * videoAspect / screenAspect);
-	CGFloat height = ceilf(videoSize.height * videoAspect / screenAspect);
-
-	// Do additional input video and device resolution aspect ratio
-	// rounding check to see if the width and height values are still
-	// the ~same.
-	//
-	// If they still match, we can change the video scaling mode from
-	// aspectFit to aspectFill, this works around some off-by-one scaling
-	// errors with certain screen size and video resolution combos
-	//
-	// TODO: Shouldn't harm to extend width/height check to
-	// match values within -1..+1 range from the original
-
-	if (videoSize.width == width && videoSize.height == height) {
-		ret = YES;
-	}
-
-	return ret;
-}
 
 - (void)reportError:(NSError*)error category:(const char*)category
 {

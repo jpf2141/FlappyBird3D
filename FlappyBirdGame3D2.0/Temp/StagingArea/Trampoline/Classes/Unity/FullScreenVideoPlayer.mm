@@ -7,10 +7,8 @@
 #include "UI/UnityView.h"
 #include "UI/UnityViewControllerBase.h"
 #include "UI/OrientationSupport.h"
-#include "UI/UnityAppController+ViewHandling.h"
 #include "Unity/ObjCRuntime.h"
 #include "Unity/VideoPlayer.h"
-#include "PluginBase/UnityViewControllerListener.h"
 
 
 typedef void (^OnTouchBlock)();
@@ -23,7 +21,7 @@ typedef void (^OnTouchBlock)();
 @end
 
 #if UNITY_IOS
-@interface MPVideoPlayback : NSObject<UnityViewControllerListener>
+@interface MPVideoPlayback : NSObject
 {
 	MPMoviePlayerController*	moviePlayer;
 	CancelOnTouchView*			cancelOnTouchView;
@@ -41,7 +39,7 @@ typedef void (^OnTouchBlock)();
 @end
 #endif
 
-@interface AVKitVideoPlayback : NSObject<VideoPlayerDelegate,UIViewControllerTransitioningDelegate>
+@interface AVKitVideoPlayback : NSObject<VideoPlayerDelegate>
 {
 	AVPlayerViewController*		videoViewController;
 	VideoPlayer*				videoPlayer;
@@ -82,7 +80,6 @@ static AVKitVideoPlayback*	_AVKitVideoPlayback	= nil;
 		scalingMode		= scaling;
 		cancelOnTouch	= cot;
 
-		UnityRegisterViewControllerListener((id<UnityViewControllerListener>)self);
 		[self performSelector:@selector(actuallyStartTheMovie:) withObject:url afterDelay:0];
 	}
 	return self;
@@ -108,9 +105,6 @@ static AVKitVideoPlayback*	_AVKitVideoPlayback	= nil;
 
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:moviePlayer];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerDidExitFullscreenNotification object:moviePlayer];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackSourceTypeAvailable:) name:MPMovieSourceTypeAvailableNotification object:moviePlayer];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackMediaTypesAvailable:) name:MPMovieMediaTypesAvailableNotification object:moviePlayer];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackNaturalSizeAvailable:) name:MPMovieNaturalSizeAvailableNotification object:moviePlayer];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioRouteChanged:) name:AVAudioSessionRouteChangeNotification object:nil];
 
 		moviePlayer.view.frame = GetAppController().rootView.bounds;
@@ -131,30 +125,6 @@ static AVKitVideoPlayback*	_AVKitVideoPlayback	= nil;
 {
 	[self finish];
 }
-- (void)moviePlayBackSourceTypeAvailable:(NSNotification*)notification
-{
-	if (moviePlayer.movieSourceType == MPMovieSourceTypeUnknown)
-	{
-		[self finish];
-	}
-}
-- (void)moviePlayBackMediaTypesAvailable:(NSNotification*)notification
-{
-	if (moviePlayer.movieMediaTypes == MPMovieMediaTypeMaskNone)
-	{
-		[self finish];
-	}
-}
-- (void)moviePlayBackNaturalSizeAvailable:(NSNotification*)notification
-{
-	CGSize screenSize = GetAppController().rootView.bounds.size;
-	BOOL ret = [VideoPlayer CheckScalingModeAspectFill:moviePlayer.naturalSize screenSize:screenSize];
-
-	if (ret == YES && moviePlayer.scalingMode == MPMovieScalingModeAspectFit)
-	{
-		moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
-	}
-}
 - (void)audioRouteChanged:(NSNotification*)notification
 {
 	// not really cool:
@@ -163,48 +133,34 @@ static AVKitVideoPlayback*	_AVKitVideoPlayback	= nil;
 	if(moviePlayer)
 		[moviePlayer play];
 }
-- (void)viewDidLayoutSubviews:(NSNotification *)notification {
-	moviePlayer.view.frame = GetAppController().rootView.bounds;
-}
 - (void)finish
 {
-	@synchronized(self)
+	if(moviePlayer)
 	{
-		if(moviePlayer)
-		{
 		// remove notifications right away to avoid recursively calling finish from callback
-			[[NSNotificationCenter defaultCenter] removeObserver:self];
-		}
-
-		[moviePlayer.view removeFromSuperview];
-		[cancelOnTouchView removeFromSuperview];
-		cancelOnTouchView = nil;
-
-		[moviePlayer pause];
-		[moviePlayer stop];
-		moviePlayer = nil;
-
-		_MPVideoPlayback	= nil;
-
-		UnityUnregisterViewControllerListener((id<UnityViewControllerListener>)self);
-
-		if(UnityIsPaused())
-			UnityPause(0);
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:moviePlayer];
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:moviePlayer];
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionRouteChangeNotification object:nil];
 	}
+
+	[moviePlayer.view removeFromSuperview];
+	[cancelOnTouchView removeFromSuperview];
+	cancelOnTouchView = nil;
+
+	[moviePlayer pause];
+	[moviePlayer stop];
+	moviePlayer = nil;
+
+	_MPVideoPlayback	= nil;
+
+	if(UnityIsPaused())
+		UnityPause(0);
 }
 @end
 #endif
 
 @implementation AVKitVideoPlayback
 static Class _AVPlayerViewControllerClass = nil;
-
-#if !UNITY_TVOS
-static NSUInteger supportedInterfaceOrientations_DefaultImpl(id self_, SEL _cmd)
-{
-	return GetAppController().rootViewController.supportedInterfaceOrientations;
-}
-#endif
-
 + (void)InitClass
 {
 	// TODO: dispatch_once
@@ -214,13 +170,7 @@ static NSUInteger supportedInterfaceOrientations_DefaultImpl(id self_, SEL _cmd)
 		if(avKitBundle)
 		{
 			if( (_AVPlayerViewControllerClass = [avKitBundle classNamed:@"AVPlayerViewController"]) == nil )
-			{
 				[avKitBundle unload];
-				return;
-			}
-#if !UNITY_TVOS
-			ObjCSetKnownInstanceMethod(_AVPlayerViewControllerClass, @selector(supportedInterfaceOrientations), (IMP)&supportedInterfaceOrientations_DefaultImpl);
-#endif
 		}
 	}
 }
@@ -257,19 +207,6 @@ static NSUInteger supportedInterfaceOrientations_DefaultImpl(id self_, SEL _cmd)
 
 		videoViewController.showsPlaybackControls = showControls;
 		videoViewController.view.backgroundColor = bgColor;
-		videoViewController.videoGravity = (NSString *) videoGravity;
-		videoViewController.transitioningDelegate = self;
-
-#if UNITY_TVOS
-		// In tvOS clicking Menu button while video is playing will exit the app. So when
-		// app disables exiting to menu behavior, we need to catch the click and ignore it.
-		if (!UnityGetAppleTVRemoteAllowExitToMenu())
-		{
-			UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-			tapRecognizer.allowedPressTypes = @[@(UIPressTypeMenu)];
-			[videoViewController.view addGestureRecognizer:tapRecognizer];
-		}
-#endif
 
 		if(cancelOnTouch)
 		{
@@ -285,32 +222,11 @@ static NSUInteger supportedInterfaceOrientations_DefaultImpl(id self_, SEL _cmd)
 		[videoPlayer loadVideo:url];
 	}
 }
-- (void)handleTap:(UITapGestureRecognizer*)sender
-{
-	if (cancelOnTouch && (sender.state == UIGestureRecognizerStateEnded))
-		[self finish];
-}
 - (void)onPlayerReady
 {
 	videoViewController.player = videoPlayer.player;
-
-	CGSize screenSize = GetAppController().rootView.bounds.size;
-	BOOL ret = [VideoPlayer CheckScalingModeAspectFill:videoPlayer.videoSize screenSize:screenSize];
-	if (ret == YES && [videoViewController.videoGravity isEqualToString:AVLayerVideoGravityResizeAspect] == YES)
-	{
-		videoViewController.videoGravity = AVLayerVideoGravityResizeAspectFill;
-	}
-
 	[videoPlayer playVideoPlayer];
-#if UNITY_TVOS
 	GetAppController().window.rootViewController = videoViewController;
-#else
-	UIViewController *viewController = [GetAppController() topMostController];
-	if ([viewController isEqual:videoViewController] == NO && [videoViewController isBeingPresented] == NO)
-	{
-		[viewController presentViewController:videoViewController animated:NO completion:nil];
-	}
-#endif
 }
 - (void)onPlayerDidFinishPlayingVideo
 {
@@ -320,44 +236,25 @@ static NSUInteger supportedInterfaceOrientations_DefaultImpl(id self_, SEL _cmd)
 {
 	[self finish];
 }
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-	if ([dismissed isEqual:videoViewController] == YES)
-	{
-		[self finish];
-	}
-
-	return nil;
-}
 - (void)finish
 {
-	@synchronized(self)
-	{
-#if UNITY_TVOS
-		GetAppController().window.rootViewController = GetAppController().rootViewController;
-#else
-		UIViewController *viewController = [GetAppController() topMostController];
-		if ([viewController isEqual:videoViewController] == YES && [viewController isBeingDismissed] == NO)
-		{
-			[viewController dismissViewControllerAnimated:NO completion:nil];
-		}
-#endif
+	GetAppController().window.rootViewController = GetAppController().rootViewController;
 
-		[cancelOnTouchView removeFromSuperview];
-		[videoPlayer unloadPlayer];
+	[cancelOnTouchView removeFromSuperview];
+	[videoPlayer unloadPlayer];
 
-		cancelOnTouchView = nil;
-		videoPlayer = nil;
-		videoViewController = nil;
+	cancelOnTouchView = nil;
+	videoPlayer = nil;
+	videoViewController = nil;
 
-		_AVKitVideoPlayback	= nil;
+	_AVKitVideoPlayback	= nil;
 
 #if UNITY_TVOS
-		UnityCancelTouches();
+	UnityCancelTouches();
 #endif
 
-		if(UnityIsPaused())
-			UnityPause(0);
-	}
+	if(UnityIsPaused())
+		UnityPause(0);
 }
 @end
 
@@ -457,12 +354,10 @@ extern "C" void UnityPlayFullScreenVideo(const char* path, const float* color, u
 #endif
 }
 
-extern "C" int UnityIsFullScreenPlaying()
+extern "C" void UnityStopFullScreenVideoIfPlaying()
 {
+	[_AVKitVideoPlayback finish];
 #if UNITY_IOS
-	return _MPVideoPlayback || _AVKitVideoPlayback ? 1 : 0;
-#else
-	return _AVKitVideoPlayback ? 1 : 0;
+	[_MPVideoPlayback finish];
 #endif
 }
-

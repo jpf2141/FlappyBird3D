@@ -47,14 +47,6 @@ bool 	_ios91orNewer			= false;
 bool	_renderingInited		= false;
 // was unity inited: we should not touch unity api while this is false
 bool	_unityAppReady			= false;
-// see if there's a need to do internal player pause/resume handling
-//
-// Typically the trampoline code should manage this internally, but
-// there are use cases, videoplayer, plugin code, etc where the player
-// is paused before the internal handling comes relevant. Avoid
-// overriding externally managed player pause/resume handling by
-// caching the state
-bool	_wasPausedExternal		= false;
 // should we skip present on next draw: used in corner cases (like rotation) to fill both draw-buffers with some content
 bool	_skipPresent			= false;
 // was app "resigned active": some operations do not make sense while app is in background
@@ -279,7 +271,7 @@ extern "C" void UnityRequestQuit()
 
 	if(_unityAppReady)
 	{
-		if(UnityIsPaused() && _wasPausedExternal == false)
+		if(UnityIsPaused())
 		{
 			UnityPause(0);
 			UnityWillResume();
@@ -301,27 +293,24 @@ extern "C" void UnityRequestQuit()
 
 	if(_unityAppReady)
 	{
+		UnityOnApplicationWillResignActive();
 		UnitySetPlayerFocus(0);
 
-		_wasPausedExternal = UnityIsPaused();
-		if (_wasPausedExternal == false)
+		// do pause unity only if we dont need special background processing
+		// otherwise batched player loop can be called to run user scripts
+		int bgBehavior = UnityGetAppBackgroundBehavior();
+		if(bgBehavior == appbgSuspend || bgBehavior == appbgExit)
 		{
-			// do pause unity only if we dont need special background processing
-			// otherwise batched player loop can be called to run user scripts
-			int bgBehavior = UnityGetAppBackgroundBehavior();
-			if(bgBehavior == appbgSuspend || bgBehavior == appbgExit)
-			{
-				// Force player to do one more frame, so scripts get a chance to render custom screen for minimized app in task manager.
-				// NB: UnityWillPause will schedule OnApplicationPause message, which will be sent normally inside repaint (unity player loop)
-				// NB: We will actually pause after the loop (when calling UnityPause).
-				UnityWillPause();
-				[self repaint];
-				UnityPause(1);
+			// Force player to do one more frame, so scripts get a chance to render custom screen for minimized app in task manager.
+			// NB: UnityWillPause will schedule OnApplicationPause message, which will be sent normally inside repaint (unity player loop)
+			// NB: We will actually pause after the loop (when calling UnityPause).
+			UnityWillPause();
+			[self repaint];
+			UnityPause(1);
 
-				_snapshotView = [self createSnapshotView];
-				if(_snapshotView)
-					[_rootView addSubview:_snapshotView];
-			}
+			_snapshotView = [self createSnapshotView];
+			if(_snapshotView)
+				[_rootView addSubview:_snapshotView];
 		}
 	}
 

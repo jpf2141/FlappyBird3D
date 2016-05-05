@@ -38,6 +38,7 @@ void	UnityPause(int pause);
 int		UnityIsPaused();					// 0 if player is running, 1 if paused
 void	UnityWillPause();					// send the message that app will pause
 void	UnityWillResume();					// send the message that app will resume
+void	UnityOnApplicationWillResignActive();
 void	UnityInputProcess();
 void	UnityDeliverUIEvents();				// unity processing impacting UI will be called in there
 

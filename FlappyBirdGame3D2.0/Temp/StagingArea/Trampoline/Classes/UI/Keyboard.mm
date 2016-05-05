@@ -58,89 +58,6 @@ static const unsigned       kToolBarHeight = 64;
 @synthesize canceled	= _canceled;
 @synthesize text;
 
-bool stringContainsEmoji(NSString *string)
-{
-	__block BOOL returnValue = NO;
-	[string enumerateSubstringsInRange:NSMakeRange(0, [string length])
-		options:NSStringEnumerationByComposedCharacterSequences
-		usingBlock: ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop)
-		{
-			const unichar hs = [substring characterAtIndex:0];
-		
-			// Surrogate pair
-			if(hs >= 0xD800 && hs <= 0xDBFF)
-			{
-				if(substring.length > 1)
-				{
-					// Compute the code point in the U+10000 - U+10FFFF plane.
-					const unichar ls = [substring characterAtIndex:1];
-					const int uc = ((hs - 0xD800) * 0x400) + (ls - 0xDC00) + 0x10000;
-				
-					// The ranges for the various emoji tables are as follows.
-					// Musical -> [U+1D000, U+1D24F]
-					// Miscellaneous Symbols and Pictographs -> [U+1F300, U+1F5FF]
-					// Emoticons -> [U+1F600, U+1F64F]
-					// Transport and Map Symbols -> [U+1F680, U+1F6FF]
-					// Supplemental Symbols and Pictographs -> [U+1F900, U+1F9FF]
-					if(uc >= 0x1D000 && uc <= 0x1F9FF)
-					{
-						returnValue = YES;
-					}
-				}
-			}
-			else if(substring.length > 1)
-			{
-				const unichar ls = [substring characterAtIndex:1];
-			
-				if(ls == 0x20E3)
-				{
-					// Filter all the emojis for numbers.
-					returnValue = YES;
-				}
-				else if(hs >= 0x270A && hs <= 0x270D)
-				{
-					// Filter all the various hand symbols (e.g., victory sign, writing hand, etc).
-					returnValue = YES;
-				}
-			}
-			else
-			{
-				// Non surrogate pair.
-				if(hs >= 0x2100 && hs <= 0x27FF)
-				{
-					// Filter the following emoji ranges.
-					// Letterlike Symbols -> [U+2100, U+214F]
-					// Number Forms -> [U+2150, U+218F]
-					// Arrows -> [U+2190, U+21FF]
-					// Dingbats -> [U+2700, U+27BF]
-					// Supplemental Arrows-A -> [U+27F0–U+27FF]
-					returnValue = YES;
-				}
-				else if(hs >= 0x2900 && hs <= 0x297F)
-				{
-					// Filter Supplemental Arrows-B -> [U+2900, U+297F]
-					returnValue = YES;
-				}
-				else if(hs >= 0x2B05 && hs <= 0x2BFF)
-				{
-					// Filter Miscellaneous Symbols and Arrows -> [U+2B00, U+2BFF]
-					returnValue = YES;
-				}
-			}
-		}];
-	
-	return returnValue;
-}
-
-// See the documentation for this method in http://apple.co/1OMnz8D.
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-	// Process the input string using the 'stringContainsEmoji' function and return NO or YES
-	// depending on whether it needs to be added to the UITexField or skipped altogether, respectively.
-	// We need to do this because Unity's UI doesn't provide proper Unicode support yet.
-	return !stringContainsEmoji(string);
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField*)textFieldObj
 {
 	[self hide];
@@ -344,17 +261,10 @@ struct CreateToolbarResult
 }
 - (void)hideUI
 {
-	// this is done on the next frame so that
-	// in the case where unity is paused while going 
-	// into the background and an input is deactivated
-	// we don't mess with the view hierarchy while taking
-	// a view snapshot (case 760747).
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[inputView resignFirstResponder];
+	[inputView resignFirstResponder];
 
-		[editView removeFromSuperview];
-		editView.hidden = YES;
-	});
+	[editView removeFromSuperview];
+	editView.hidden = YES;
 }
 - (void)systemHideKeyboard
 {

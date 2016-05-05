@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour {
+
+	public Text levelText;
+
 
 	// Use this for initialization
 	void Start () {
@@ -10,6 +14,7 @@ public class MainMenuController : MonoBehaviour {
 		//DontDestroyOnLoad ();
 		if (FlappyBirdPilot.fromGame == true) { 
 			Debug.Log (FlappyBirdPilot.level);
+			this.levelText.text = "You made it to Level " + FlappyBirdPilot.level + "!!!";
 		}
 
 	

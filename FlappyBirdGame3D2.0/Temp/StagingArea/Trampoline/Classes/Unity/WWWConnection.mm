@@ -17,7 +17,6 @@ const char* WWWRequestProviderClassName = "UnityWWWRequestDefaultProvider";
 @property (readwrite, retain, nonatomic) NSMutableURLRequest*  request;
 @property (readwrite, retain, nonatomic) NSURLConnection*      connection;
 @property (strong, nonatomic)            NSCondition*          condition;
-@property (nonatomic)					 BOOL				   manuallyHandleRedirect;
 @end
 
 
@@ -117,7 +116,7 @@ const char* WWWRequestProviderClassName = "UnityWWWRequestDefaultProvider";
 					willSendRequest:(NSURLRequest *)request
 					 redirectResponse:(NSURLResponse *)response;
 {
-	if (response && self.manuallyHandleRedirect)
+	if (response)
 	{
 		// notify TransportiPhone of the redirect and signal to process the next response.
 		if([response isKindOfClass:[NSHTTPURLResponse class]])
@@ -152,12 +151,6 @@ const char* WWWRequestProviderClassName = "UnityWWWRequestDefaultProvider";
 
 -(void)handleResponse:(NSURLResponse*)response
 {
-	if (self.shouldAbort)
-	{
-		SignalConnection(self);
-		[self.connection cancel];
-		return;
-	}
 	// on ios pre-5.0 NSHTTPURLResponse was not created for "file://"" connections, so play safe here
 	// TODO: remove that once we have 5.0 as requirement
 	self->_status = 200;
@@ -180,7 +173,7 @@ const char* WWWRequestProviderClassName = "UnityWWWRequestDefaultProvider";
 		
 		long long contentLength = [response expectedContentLength];
 		
-		// ignore any data that we might have recieved during a redirect
+        // ignore any data that we might have recieved during a redirect
 		self->_estimatedLength	=  contentLength > 0 && (self->_status / 100 != 3) ? contentLength : 0;
 		self->_dataRecievd = 0;
 		
@@ -194,19 +187,18 @@ const char* WWWRequestProviderClassName = "UnityWWWRequestDefaultProvider";
 			UnityReportWWWStatusError(self.udata, (int)self->_status, [[NSHTTPURLResponse localizedStringForStatusCode: self->_status] UTF8String]);
 		}
 	}
+	
 	UnityReportWWWReceivedResponse(self.udata, (int)self->_status, (unsigned int)(unsigned long)self->_estimatedLength, [self->_responseHeader UTF8String]);
 }
 
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
 {
+	UnityReportWWWReceivedData(self.udata, data.bytes, (unsigned int)[data length], (unsigned int)self->_estimatedLength);
 	if(self.shouldAbort)
 	{
-		SignalConnection(self);
 		[connection cancel];
-		return;
+		SignalConnection(self);
 	}
-	
-	UnityReportWWWReceivedData(self.udata, data.bytes, (unsigned int)[data length], (unsigned int)self->_estimatedLength);
 }
 
 static void SignalConnection(UnityWWWConnectionDelegate* delegate)
@@ -233,7 +225,6 @@ static void WaitOnCondition(UnityWWWConnectionDelegate* delegate)
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
 	UnityReportWWWStatusError(self.udata, (int)[error code], [[error localizedDescription] UTF8String]);
-	UnityReportWWWFinishedLoadingData(self.udata);
 	SignalConnection(self);
 }
 
@@ -332,20 +323,12 @@ extern "C" void UnitySendWWWConnection(void* connection, const void* data, unsig
 		[request setValue:[NSString stringWithFormat:@"%d", length] forHTTPHeaderField:@"Content-Length"];
 	}
 	
-	// Start connection on non-main thread
-	// This is important because didReceiveData handler may stall in case a target buffer is not ready.
-	// We have limited accumulator buffer pretty much for everything (assetbundles, downloadhandler) and stall until the data is consumed.
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-			NSRunLoop *loop = [NSRunLoop currentRunLoop];
-			delegate.connection = [[NSURLConnection alloc] initWithRequest:request delegate:delegate startImmediately:NO];
-			[delegate.connection scheduleInRunLoop:loop forMode:NSRunLoopCommonModes];
-			[delegate.connection start];
-			[loop run];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		delegate.connection = [NSURLConnection connectionWithRequest:request delegate:delegate];
 	});
-	
+
 	if (blockImmediately)
 	{
-		delegate.manuallyHandleRedirect = YES;
 		WaitOnCondition(delegate);
 	}
 }
@@ -384,9 +367,5 @@ extern "C" void UnityDestroyWWWConnection(void* connection)
 
 extern "C" void UnityShouldCancelWWW(const void* connection)
 {
-	UnityWWWConnectionDelegate* delegate = (__bridge UnityWWWConnectionDelegate*)connection;
-	[delegate.connection cancel];
-	
-	delegate.shouldAbort = YES;
-	SignalConnection(delegate);
+	((__bridge UnityWWWConnectionDelegate*)connection).shouldAbort = YES;
 }

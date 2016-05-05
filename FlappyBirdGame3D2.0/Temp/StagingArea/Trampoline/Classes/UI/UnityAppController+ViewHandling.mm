@@ -70,16 +70,6 @@ extern bool _unityAppReady;
 }
 #endif
 
-- (UIViewController*)topMostController
-{
-  UIViewController *topController = self.window.rootViewController;
-  while (topController.presentedViewController)
-  {
-    topController = topController.presentedViewController;
-  }
-
-  return topController;
-}
 - (UIViewController*)createRootViewController
 {
 #if UNITY_TVOS
