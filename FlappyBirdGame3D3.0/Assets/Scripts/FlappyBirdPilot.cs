@@ -50,7 +50,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 	void Start () {
 
 		source = GetComponent<AudioSource> (); 
-
+		lighten ();
 		this.score = 0.0f;
 		this.health = 100.0f;
 		level = 1;
@@ -116,7 +116,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 		if (FlappyBirdPilot.easy == true) { 
 			difficulty = .0001f;
 		} else {
-			difficulty = .005f;
+			difficulty = .0005f;
 		}
 	}
 
@@ -166,8 +166,8 @@ public class FlappyBirdPilot : MonoBehaviour {
 				tilt = -0.01f/tiltNerfer;
 				gameObject.transform.localScale += new Vector3 (tilt, tilt, tilt);
 			} else {
-				tilt = Input.acceleration.x/tiltNerfer;	//iPhone scaling
-				gameObject.transform.localScale += new Vector3 (tilt, tilt, tilt);
+//				tilt = Input.acceleration.x/tiltNerfer;	//iPhone scaling
+//				gameObject.transform.localScale += new Vector3 (tilt, tilt, tilt);
 			}
 		} else if (gameObject.transform.localScale.x <= 0.03f) {
 			gameObject.transform.localScale = new Vector3 (0.03f, 0.03f, 0.03f);
@@ -222,4 +222,18 @@ public class FlappyBirdPilot : MonoBehaviour {
 	private Rigidbody getRigidbody() { 
 		return gameObject.GetComponent<Rigidbody> ();
 	}
+
+	public static GameObject lighten() {
+		GameObject lightGameObject = new GameObject ("Backup Directional Light");
+
+		Light light = lightGameObject.AddComponent<Light> ();
+		light.color = Color.white;
+		light.intensity = 1.27f;
+		light.bounceIntensity = 0.82f;
+		light.type = LightType.Directional;
+		lightGameObject.transform.rotation = new Quaternion (50, 80, -2, 0);
+		lightGameObject.transform.position = new Vector3 (0, 3, 0);
+		return lightGameObject;
+	}
+
 }

@@ -12,6 +12,8 @@ public class MainMenuController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.tilt = 0;
+		FlappyBirdPilot.easy = true;
+		FlappyBirdPilot.lighten (); 
 		//DontDestroyOnLoad ();
 		if (FlappyBirdPilot.fromGame == true) { 
 			Debug.Log (FlappyBirdPilot.level);
