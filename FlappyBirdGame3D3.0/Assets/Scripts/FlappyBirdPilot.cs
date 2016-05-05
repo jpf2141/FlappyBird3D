@@ -116,7 +116,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 		if (FlappyBirdPilot.easy == true) { 
 			difficulty = .0001f;
 		} else {
-			difficulty = .001f;
+			difficulty = .005f;
 		}
 	}
 

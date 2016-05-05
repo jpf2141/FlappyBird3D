@@ -27,11 +27,17 @@ public class MainMenuController : MonoBehaviour {
 		this.tilt += Input.acceleration.x;	//iPhone scaling
 		if (Input.touchCount > 0 || Input.GetMouseButtonDown (0)) { 
 			SceneManager.LoadScene ("Game");
-		} else if (tilt > 30.0f) {
+		} else if (tilt > 25.0f) {
 			FlappyBirdPilot.easy = false;
 			SceneManager.LoadScene ("Game");
-		} else if (tilt < -30.0f) { 
+		} else if (tilt < -25.0f) { 
 			FlappyBirdPilot.easy = true;
+			SceneManager.LoadScene ("Game");
+		} else if (Input.GetKey (KeyCode.E)) { 
+			FlappyBirdPilot.easy = true;
+			SceneManager.LoadScene ("Game");
+		} else if (Input.GetKey (KeyCode.H)) { 
+			FlappyBirdPilot.easy = false;
 			SceneManager.LoadScene ("Game");
 		}
 	}
