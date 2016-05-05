@@ -3,15 +3,12 @@ using System.Collections;
 
 public class FirstPersonController : MonoBehaviour {
 
-	public AudioClip cloudSound;
-	private AudioSource source;
 	public GameObject flappybird;
 	public float delay = 1.0F;
 
 	// Use this for initialization
 	void Start () {
-
-		source = GetComponent<AudioSource> (); 
+	
 		gameObject.transform.position = flappybird.transform.position;
 	}
 	
@@ -30,7 +27,6 @@ public class FirstPersonController : MonoBehaviour {
 				if (checkTarget(hit.collider.gameObject)) {
 					selectTarget(hit.collider.gameObject); 
 					Destroy(hit.collider.gameObject, 0.5f);
-					source.PlayOneShot (cloudSound, 1);
 				}
 			}
 		}

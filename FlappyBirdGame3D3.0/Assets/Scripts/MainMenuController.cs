@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour {
 
+	public AudioClip birdSound;
+	private AudioSource source;
 	public Text levelText;
 	private float tilt;
 
 
 	// Use this for initialization
 	void Start () {
+		source = GetComponent<AudioSource> (); 
+		source.PlayOneShot (birdSound, 1); 
 		this.tilt = 0;
 		FlappyBirdPilot.easy = true;
 		FlappyBirdPilot.lighten (); 
