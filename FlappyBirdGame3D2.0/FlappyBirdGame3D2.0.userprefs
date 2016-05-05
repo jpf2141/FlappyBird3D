@@ -1,6 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Vuforia/Editor/WebcamProfiles/profiles.xml">
+    <Files>
+      <File FileName="Assets/Scripts/MainMenuController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/FlappyBirdPilot.cs" Line="200" Column="3" />
+      <File FileName="Assets/Scripts/GunController.cs" Line="5" Column="9" />
+      <File FileName="Assets/Vuforia/Editor/WebcamProfiles/profiles.xml" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
