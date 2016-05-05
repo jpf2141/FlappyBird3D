@@ -17,8 +17,9 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 	public AudioClip coinSound;
 	public AudioClip cloudSound;
+	public AudioClip endGame;
+	public AudioClip startGame;
 	private AudioSource source;
-
 
 	public GameObject joystick;
 	public float y_force; 
@@ -56,6 +57,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 		level = 1;
 		fromGame = true;
 		this.levelText.text = "Level " + level;
+		source.PlayOneShot (startGame, 1);
 		healthBar.Value = 100.0f;	//initalize health bar
 		scoreBar.Value = 0.0f;		//initialize score bar
 	}	
@@ -116,7 +118,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 		if (FlappyBirdPilot.easy == true) { 
 			difficulty = .0001f;
 		} else {
-			difficulty = .005f;
+			difficulty = .001f;
 		}
 	}
 
@@ -139,6 +141,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 	} 
 
 	public void levelUp() { 
+		
 		this.scoreBar.Value = 0.0f;
 		level += 1;
 		this.levelText.text = "Level " + level;
@@ -146,6 +149,7 @@ public class FlappyBirdPilot : MonoBehaviour {
 
 	public void checkHealth() { 
 		if(this.health <= 0 || this.healthBar.Value <= 0) {
+			source.PlayOneShot (endGame, 1); 
 			SceneManager.LoadScene ("Menu");
 			Debug.Log(this.healthBar.Value);
 		}
