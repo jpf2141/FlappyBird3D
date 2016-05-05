@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour {
 
 	public Text levelText;
+	private float tilt;
 
 
 	// Use this for initialization
 	void Start () {
-
+		this.tilt = 0;
 		//DontDestroyOnLoad ();
 		if (FlappyBirdPilot.fromGame == true) { 
 			Debug.Log (FlappyBirdPilot.level);
@@ -22,14 +23,15 @@ public class MainMenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		this.tilt += Input.acceleration.x;	//iPhone scaling
 		if (Input.touchCount > 0 || Input.GetMouseButtonDown (0)) { 
 			SceneManager.LoadScene ("Game");
-		} else if (Input.gyro.attitude.x > 30.0f) {
+		} else if (tilt > 30.0f) {
 			FlappyBirdPilot.easy = false;
 			SceneManager.LoadScene ("Game");
-		} else if (Input.gyro.attitude.x < -30.0f) { 
-			
-			FlappyBirdPilot.easy = false;
+		} else if (tilt < -30.0f) { 
+			FlappyBirdPilot.easy = true;
 			SceneManager.LoadScene ("Game");
 		}
 	}
