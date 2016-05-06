@@ -1,0 +1,7 @@
+Josh Fram, Cassie Wes, and Kyle Jackson, are willing to have their names appear next to their presentation of their work on the project web page and video for COMS W4172.
+
+Our project is a derivation of the popular FlappyBird game for iPhone and Android. The Unity game engine and Google Cardboard allowed us to create a 3D Version of the game, in which the user could use many more degrees of freedom to traverse the map than was available in the original game. In FlappyBird3D, the user can travel by flying the bird up, down, sideways, forwards, and backwards, while also scaling up and down, and rotating the bird about its X and Y axes. Further, the user can select and destroy incoming cloud objects. Wayfinding is supported by two minimaps that help the user find the best paths through the oncoming obstacles. 
+
+
+Youtube Video:
+https://www.youtube.com/watch?v=_6W9Id0UBkU&feature=youtu.b%20e
